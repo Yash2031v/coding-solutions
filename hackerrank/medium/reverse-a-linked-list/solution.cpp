@@ -1,8 +1,9 @@
 
 
 /*
- * Complete the 'reversePrint' function below.
+ * Complete the 'reverse' function below.
  *
+ * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
  * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
  */
 
@@ -16,12 +17,18 @@
  *
  */
 
-void reversePrint(SinglyLinkedListNode* llist) {
-    if(llist ==NULL){
-        return;
+SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
+    SinglyLinkedListNode* prev = NULL;
+    SinglyLinkedListNode* current = llist;
+    SinglyLinkedListNode* Next;
+    while(current!=NULL){
+        Next=current->next;
+        current->next=prev;
+        prev = current;
+        current=Next;
         
     }
-    reversePrint(llist->next);
-    cout<<llist->data<<endl;
+    return prev;
+    
 }
 
