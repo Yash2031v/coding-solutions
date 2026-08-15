@@ -1,4 +1,4 @@
-# Delete a Node
+# Print in Reverse
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -53,18 +53,15 @@ The input of each test case is as follows:
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T10:46:20.243Z  
+**Submitted:** 2026-08-15T13:12:22.771Z  
 
 ```cpp
 
 
 /*
- * Complete the 'deleteNode' function below.
+ * Complete the 'reversePrint' function below.
  *
- * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
- * The function accepts following parameters:
- *  1. INTEGER_SINGLY_LINKED_LIST llist
- *  2. INTEGER position
+ * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
  */
 
 /*
@@ -77,27 +74,13 @@ The input of each test case is as follows:
  *
  */
 
-SinglyLinkedListNode* deleteNode(SinglyLinkedListNode* llist, int position) {
-    int count=1;
-    SinglyLinkedListNode* temp = llist;
-    if(llist==NULL){
-        return NULL;
+void reversePrint(SinglyLinkedListNode* llist) {
+    if(llist ==NULL){
+        return;
+        
     }
-    if (position == 0) {
-        SinglyLinkedListNode* temp = llist;
-        llist = llist->next;
-        delete temp;
-        return llist;
-    }
-    while(count!=position){
-        temp=temp->next;
-        count++;
-    }
-    SinglyLinkedListNode* temp1 = temp->next;
-    temp->next=temp->next->next;
-    free(temp1);
-    return llist;
-    
+    reversePrint(llist->next);
+    cout<<llist->data<<endl;
 }
 
 
