@@ -1,6 +1,6 @@
 
 
-// Complete the insertNodeAtTail function below.
+// Complete the insertNodeAtHead function below.
 
 /*
  * For your reference:
@@ -11,18 +11,16 @@
  * };
  *
  */
-SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
+SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
     SinglyLinkedListNode* new_node = new SinglyLinkedListNode(data);
-	if(head==NULL){
-        head = new_node;
-        return head;
+    if(llist==NULL){
+        llist=new_node;
+        return llist;
         
-    }SinglyLinkedListNode* temp = head;
-    while(temp->next!=NULL){
-        temp=temp->next;
     }
-    temp->next=new_node;
-    return head;
+	new_node->next=llist;
+    llist=new_node;
+    return llist;
 
 }
 
