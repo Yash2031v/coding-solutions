@@ -46,7 +46,7 @@ The last line contains an integer, $position$, the position of the node to delet
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T10:43:44.231Z  
+**Submitted:** 2026-08-15T10:46:05.209Z  
 
 ```cpp
 
@@ -75,6 +75,12 @@ SinglyLinkedListNode* deleteNode(SinglyLinkedListNode* llist, int position) {
     SinglyLinkedListNode* temp = llist;
     if(llist==NULL){
         return NULL;
+    }
+    if (position == 0) {
+        SinglyLinkedListNode* temp = llist;
+        llist = llist->next;
+        delete temp;
+        return llist;
     }
     while(count!=position){
         temp=temp->next;
