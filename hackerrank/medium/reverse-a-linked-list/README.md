@@ -1,4 +1,4 @@
-# Print in Reverse
+# Reverse a linked list
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -49,14 +49,15 @@ Each of the next $n$ lines contains an integer, the $data$ values of the element
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T13:12:36.035Z  
+**Submitted:** 2026-08-15T13:47:46.678Z  
 
 ```cpp
 
 
 /*
- * Complete the 'reversePrint' function below.
+ * Complete the 'reverse' function below.
  *
+ * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
  * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
  */
 
@@ -70,13 +71,19 @@ Each of the next $n$ lines contains an integer, the $data$ values of the element
  *
  */
 
-void reversePrint(SinglyLinkedListNode* llist) {
-    if(llist ==NULL){
-        return;
+SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
+    SinglyLinkedListNode* prev = NULL;
+    SinglyLinkedListNode* current = llist;
+    SinglyLinkedListNode* Next;
+    while(current!=NULL){
+        Next=current->next;
+        current->next=prev;
+        prev = current;
+        current=Next;
         
     }
-    reversePrint(llist->next);
-    cout<<llist->data<<endl;
+    return prev;
+    
 }
 
 
