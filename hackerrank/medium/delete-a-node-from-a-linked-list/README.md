@@ -46,7 +46,7 @@ The last line contains an integer, $position$, the position of the node to delet
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T10:43:42.077Z  
+**Submitted:** 2026-08-15T10:43:44.231Z  
 
 ```cpp
 
