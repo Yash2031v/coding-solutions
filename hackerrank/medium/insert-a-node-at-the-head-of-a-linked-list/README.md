@@ -1,4 +1,4 @@
-# Insert a Node at the Tail of a Linked List
+# Insert a node at the head of a linked list
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -34,12 +34,12 @@ The next $n$ lines contain an integer each, the elements to be inserted, one per
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T10:30:08.208Z  
+**Submitted:** 2026-08-15T10:32:58.153Z  
 
 ```cpp
 
 
-// Complete the insertNodeAtTail function below.
+// Complete the insertNodeAtHead function below.
 
 /*
  * For your reference:
@@ -50,18 +50,16 @@ The next $n$ lines contain an integer each, the elements to be inserted, one per
  * };
  *
  */
-SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
+SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
     SinglyLinkedListNode* new_node = new SinglyLinkedListNode(data);
-	if(head==NULL){
-        head = new_node;
-        return head;
+    if(llist==NULL){
+        llist=new_node;
+        return llist;
         
-    }SinglyLinkedListNode* temp = head;
-    while(temp->next!=NULL){
-        temp=temp->next;
     }
-    temp->next=new_node;
-    return head;
+	new_node->next=llist;
+    llist=new_node;
+    return llist;
 
 }
 
