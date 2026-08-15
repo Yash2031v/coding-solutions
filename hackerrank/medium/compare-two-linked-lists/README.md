@@ -1,4 +1,4 @@
-# Reverse a linked list
+# Compare two linked lists
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -58,17 +58,12 @@ For each test case, in a new line, print $1$ if the two lists are equal, else pr
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T13:48:17.072Z  
+**Submitted:** 2026-08-15T14:14:16.919Z  
 
 ```cpp
 
 
-/*
- * Complete the 'reverse' function below.
- *
- * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
- * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
- */
+// Complete the compare_lists function below.
 
 /*
  * For your reference:
@@ -79,22 +74,27 @@ For each test case, in a new line, print $1$ if the two lists are equal, else pr
  * };
  *
  */
+bool compare_lists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
 
-SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
-    SinglyLinkedListNode* prev = NULL;
-    SinglyLinkedListNode* current = llist;
-    SinglyLinkedListNode* Next;
-    while(current!=NULL){
-        Next=current->next;
-        current->next=prev;
-        prev = current;
-        current=Next;
-        
+    SinglyLinkedListNode* temp1 = head1;
+    SinglyLinkedListNode* temp2 = head2;
+
+    while (temp1 != NULL && temp2 != NULL) {
+
+        if (temp1->data != temp2->data) {
+            return 0;
+        }
+
+        temp1 = temp1->next;
+        temp2 = temp2->next;
     }
-    return prev;
-    
-}
 
+    if (temp1 == NULL && temp2 == NULL) {
+        return 1;
+    }
+
+    return 0;
+}
 
 ```
 
