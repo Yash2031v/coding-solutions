@@ -4,61 +4,81 @@
 
 ## Problem
 
-### Waiting Time
+### October Marathon
 
-Chef is eagerly waiting for a piece of information. His secret agent told him that this information would be revealed to him after $K$ weeks.
+Chef organised a $30$ kilometres marathon in Chefland.
+The participants receive medals on completing the marathon as following:
 
-$X$ days have already passed and Chef is getting restless now. Find the number of  **remaining**  days Chef has to wait for, to get the information.
+- If the total time taken is less than $3$ hours, they receive a GOLD medal.
+- If the total time taken is greater than equal to $3$ hours but less than $6$ hours, they receive a SILVER medal.
+- If the total time taken is greater than equal to $6$ hours, they receive a BRONZE medal.
 
-It is guaranteed that the information has not been revealed to the Chef yet.
+Chefina participated in the marathon and completed it in $X$ hours. Which medal would she receive?
 
 ### Input Format
-- The first line of input will contain an integer $T$ — the number of test cases. The description of $T$ test cases follows.
-- The first and only line of each test case contains two space-separated integers $K$ and $X$, as described in the problem statement.
+- The input consists of a single integer $X$ — the number of hours Chefina took to complete the marathon.
 ### Output Format
 
-For each test case, output the number of remaining days that Chef will have to wait for.
+Output the medal Chefina would recieve.
+
+Note that you may print each character in uppercase or lowercase. For example, the strings `GOLD`, `gold`, `Gold`, and `gOlD` are considered the same.
 
 ### Constraints
-- $1 \leq T \leq 500$
-- $1 \leq K \leq 10$
-- $1 \leq X \lt 7\cdot K$
+- $1\le X \le 10$.
 ### Sample 1:
 Input
 Output
 
 ```
-4
-1 5
-1 6
-1 1
-1 2
-```
-
-```
 2
-1
-6
-5
+```
 
+```
+GOLD
 ```
 
 ### Explanation:
 
- **Test case $1$:**  The information will be revealed to the Chef after $1$ week, which is equivalent to $7$ days. Chef has already waited for $5$ days, so he needs to wait for $2$ more days in order to get the information.
+Chefina completed the marathon in less than $3$ hours. Thus, she gets a `GOLD` medal.
 
- **Test case $2$:**  The information will be revealed to the Chef after $1$ week, which is equivalent to $7$ days. Chef has already waited for $6$ days, so he needs to wait for $1$ more day in order to get the information.
+### Sample 2:
+Input
+Output
 
- **Test case $3$:**  The information will be revealed to the Chef after $1$ week, which is equivalent to $7$ days. Chef has already waited for $1$ day, so he needs to wait for $6$ more days in order to get the information.
+```
+5
+```
 
- **Test case $4$:**  The information will be revealed to the Chef after $1$ week, which is equivalent to $7$ days. Chef has already waited for $2$ days, so he needs to wait for $5$ more days in order to get the information.
+```
+SILVER
+```
+
+### Explanation:
+
+Chefina took more than $3$ but less than $6$ hours. Thus, she gets a `SILVER` medal.
+
+### Sample 3:
+Input
+Output
+
+```
+6
+```
+
+```
+BRONZE
+```
+
+### Explanation:
+
+Chefina took $6$ hours to complete the marathon. Thus, she gets a `BRONZE` medal.
 
 ## Solution
 
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-18T04:09:18.532Z  
+**Submitted:** 2026-08-18T04:10:59.290Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -66,12 +86,15 @@ using namespace std;
 
 int main() {
 	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int k,x;
-	    cin>>k>>x;
-	    cout<<(7*k)-x<<endl;
+	int x;
+	cin>>x;
+	if(x<3){
+	    cout<<"Gold"<<endl;
+	    
+	}else if(x<5){
+	    cout<<"silver"<<endl;
+	}else{
+	    cout<<"Bronze"<<endl;
 	}
 
 }
