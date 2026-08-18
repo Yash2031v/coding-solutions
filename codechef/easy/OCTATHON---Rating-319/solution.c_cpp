@@ -3,12 +3,15 @@ using namespace std;
 
 int main() {
 	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int k,x;
-	    cin>>k>>x;
-	    cout<<(7*k)-x<<endl;
+	int x;
+	cin>>x;
+	if(x<3){
+	    cout<<"Gold"<<endl;
+	    
+	}else if(x<5){
+	    cout<<"silver"<<endl;
+	}else{
+	    cout<<"Bronze"<<endl;
 	}
 
 }
