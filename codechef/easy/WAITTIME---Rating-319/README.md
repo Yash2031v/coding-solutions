@@ -58,7 +58,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-18T04:08:53.741Z  
+**Submitted:** 2026-08-18T04:09:16.612Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -71,7 +71,7 @@ int main() {
 	while(t--){
 	    int k,x;
 	    cin>>k>>x;
-	    cout<<7-x<<endl;
+	    cout<<(7*k)-x<<endl;
 	}
 
 }
