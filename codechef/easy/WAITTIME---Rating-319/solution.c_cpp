@@ -8,7 +8,7 @@ int main() {
 	while(t--){
 	    int k,x;
 	    cin>>k>>x;
-	    cout<<7-x<<endl;
+	    cout<<(7*k)-x<<endl;
 	}
 
 }
