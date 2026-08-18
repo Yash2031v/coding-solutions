@@ -8,7 +8,7 @@ int main() {
 	if(x<3){
 	    cout<<"Gold"<<endl;
 	    
-	}else if(x<5){
+	}else if(x<=5){
 	    cout<<"silver"<<endl;
 	}else{
 	    cout<<"Bronze"<<endl;
