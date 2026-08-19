@@ -56,26 +56,37 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-19T15:01:15.790Z  
+**Submitted:** 2026-08-19T15:03:43.986Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int n;
-	    cin>>n;
-	    size=n*2;
-	    int arr[size];
-	    
-	}
+    int T;
+    cin >> T;
 
+    while (T--) {
+        int N;
+        cin >> N;
+
+        vector<int> A(2 * N);
+
+        for (int i = 0; i < 2 * N; i++) {
+            cin >> A[i];
+        }
+
+        int ans = 0;
+
+        for (int i = 0; i < N; i++) {
+            ans += max(A[i], A[2 * N - 1 - i]);
+        }
+
+        cout << ans << endl;
+    }
+
+    return 0;
 }
-
 ```
 
 ---
