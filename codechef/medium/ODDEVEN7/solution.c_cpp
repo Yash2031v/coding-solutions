@@ -3,5 +3,30 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int n;
+	    cin>>n;
+	    int count=0;int count2=0;
+	    int arr[n];
+	    for(int i=0;i<n;i++){
+	        cin>>arr[i];
+	    }
+	    for(int x:arr){
+	        if(x%2==0){
+	            count++;
+	        }
+	        else{
+	            count2++;
+	        }
+	    }
+	    if(count2>=count){
+	        cout<<n<<endl;
+	    }
+	    else{
+	        cout<<((count+count2)/2)<<endl;
+	    }
+	}   
 
 }
