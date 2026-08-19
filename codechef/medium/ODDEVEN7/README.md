@@ -54,7 +54,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-19T15:13:44.570Z  
+**Submitted:** 2026-08-19T15:31:55.766Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -62,6 +62,31 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int n;
+	    cin>>n;
+	    int count=0;int count2=0;
+	    int arr[n];
+	    for(int i=0;i<n;i++){
+	        cin>>arr[i];
+	    }
+	    for(int x:arr){
+	        if(x%2==0){
+	            count++;
+	        }
+	        else{
+	            count2++;
+	        }
+	    }
+	    if(count2>=count){
+	        cout<<n<<endl;
+	    }
+	    else{
+	        cout<<((count+count2)/2)<<endl;
+	    }
+	}   
 
 }
 
