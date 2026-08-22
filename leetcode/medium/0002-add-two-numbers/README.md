@@ -46,9 +46,9 @@ Output: [8,9,9,9,0,0,0,1]
 ## Solution
 
 **Language:** C++  
-**Runtime:** 3 ms (beats 34.17%)  
-**Memory:** 77.3 MB (beats 12.99%)  
-**Submitted:** 2026-08-22T10:12:12.229Z  
+**Runtime:** 0 ms  
+**Memory:** 8.3 MB  
+**Submitted:** 2026-08-22T10:14:41.653Z  
 
 ```cpp
 /**
@@ -88,7 +88,11 @@ public:
                 add->next=new ListNode(carry);
             }
 
-        }return result->next;
+        }
+        ListNode* temp = result;
+        return result->next;
+        delete temp;
+    
     }
 };
 ```
