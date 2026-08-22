@@ -46,9 +46,9 @@ Output: [8,9,9,9,0,0,0,1]
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 8.2 MB  
-**Submitted:** 2026-08-22T10:12:01.659Z  
+**Runtime:** 3 ms (beats 34.17%)  
+**Memory:** 77.3 MB (beats 12.99%)  
+**Submitted:** 2026-08-22T10:12:12.229Z  
 
 ```cpp
 /**
