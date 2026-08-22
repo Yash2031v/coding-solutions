@@ -38,9 +38,9 @@ Output: false
 ## Solution
 
 **Language:** C++  
-**Runtime:** 3 ms (beats 58.41%)  
-**Memory:** 132 MB (beats 13.11%)  
-**Submitted:** 2026-08-22T09:09:17.428Z  
+**Runtime:** 0 ms  
+**Memory:** 8 MB  
+**Submitted:** 2026-08-22T09:20:15.293Z  
 
 ```cpp
 /**
@@ -56,21 +56,29 @@ Output: false
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int>n;
-        ListNode* temp = head;
-        while(temp!=NULL){
-            n.push_back(temp->val);
-            temp=temp->next;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        
-        int r = n.size()-1;
-        int f = 0;
-        while(r>=f){
-            if(n[r]!=n[f]){
+        ListNode* prev = NULL;
+        ListNode* cur = slow;
+        while(cur!=NULL){
+            ListNode* next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+
+        }
+        ListNode* first = head;
+        ListNode* second = prev;
+        while(second!=NULL){
+            if(second->val!=first->val){
                 return false;
             }
-            r--;
-            f++;
+            second = second->next;
+            first = first->next;
         }
         return true;
     }
