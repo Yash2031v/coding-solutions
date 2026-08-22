@@ -35,6 +35,10 @@ public:
                 add->next=new ListNode(carry);
             }
 
-        }return result->next;
+        }
+        ListNode* temp = result;
+        return result->next;
+        delete temp;
+    
     }
 };
