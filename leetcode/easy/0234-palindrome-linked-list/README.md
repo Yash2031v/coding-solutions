@@ -38,9 +38,9 @@ Output: false
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 8 MB  
-**Submitted:** 2026-08-22T09:20:15.293Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 118 MB (beats 82.09%)  
+**Submitted:** 2026-08-22T09:20:35.157Z  
 
 ```cpp
 /**
