@@ -1,6 +1,6 @@
 
 
-// Complete the has_cycle function below.
+// Complete the findMergeNode function below.
 
 /*
  * For your reference:
@@ -11,19 +11,15 @@
  * };
  *
  */
-bool has_cycle(SinglyLinkedListNode* head) {
-    SinglyLinkedListNode* fast;
-    SinglyLinkedListNode* slow;
-    fast=head;
-    slow=head;
-    while(fast!=NULL && fast->next!=NULL){
-        fast=fast->next->next;
-        slow=slow->next;
-        if(fast==slow){
-            return true;
-        }    
-    }return false;
-    
-    
-}
+int findMergeNode(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
 
+    SinglyLinkedListNode* a = head1;
+    SinglyLinkedListNode* b = head2;
+
+    while (a != b) {
+        a = (a == NULL) ? head2 : a->next;
+        b = (b == NULL) ? head1 : b->next;
+    }
+
+    return a->data;
+}
