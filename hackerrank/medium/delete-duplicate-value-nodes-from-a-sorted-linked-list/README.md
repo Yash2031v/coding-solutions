@@ -51,7 +51,7 @@ Each of the next $n$ lines contains an integer, the $data$ value for each of the
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-23T16:17:16.204Z  
+**Submitted:** 2026-08-23T16:17:25.875Z  
 
 ```cpp
 
