@@ -46,7 +46,7 @@ The code stub reads from stdin and passes the appropriate argument to your funct
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-15T10:17:54.640Z  
+**Submitted:** 2026-08-23T16:17:49.806Z  
 
 ```cpp
 
