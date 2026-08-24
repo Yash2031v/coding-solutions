@@ -57,9 +57,9 @@ Output: "s"
 ## Solution
 
 **Language:** C++  
-**Runtime:** 2 ms (beats 19.52%)  
-**Memory:** 8.3 MB (beats 85.00%)  
-**Submitted:** 2026-08-24T06:43:23.995Z  
+**Runtime:** 3 ms (beats 12.30%)  
+**Memory:** 8.4 MB (beats 85.00%)  
+**Submitted:** 2026-08-24T06:43:38.525Z  
 
 ```cpp
 class Solution {
