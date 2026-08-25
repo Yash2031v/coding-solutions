@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int a,b,x,y;
+	    cin>>a>>b>>x>>y;
+	    int d = b-a;
+	    if(d<0){
+	        d=d*-1;
+	        if(d<=y){
+	            cout<<"Yes"<<endl;
+	        }
+	        else{
+	            cout<<"No"<<endl;
+	        }
+	        
+	    }
+	    else{
+	        if(d<=x){
+	            cout<<"Yes"<<endl;
+	            
+	        }else{
+	            cout<<"No"<<endl;
+	        }
+	    }
+	}
+
+}
