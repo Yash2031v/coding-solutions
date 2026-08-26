@@ -65,30 +65,50 @@ However, it's still optimal to buy only the first item rather than buy any two o
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:39:44.105Z  
+**Submitted:** 2026-08-26T15:45:03.934Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
-int main() {
-	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int n;
-	    cin>>n;
-	    int arr[n];
-	    for(int i = 0;i<n;i++){
-	        cin>>arr[i];
-	    }
-	    for(int x:arr){
-	        
-	    }
-	}
-
+void solve() {
+    int N;
+    cin >> N;
+    vector<int> C(N);
+    int max_spent = 0;
+    
+    for (int i = 0; i < N; i++) {
+        cin >> C[i];
+        max_spent = max(max_spent, C[i]); // Covers buying a single item
+    }
+    
+    // Check all valid pairs for buying two items
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            if (C[i] <= C[j]) {
+                max_spent = max(max_spent, C[i] + C[j]);
+            }
+        }
+    }
+    
+    cout << max_spent << "\n";
 }
 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
+}
 ```
 
 ---
