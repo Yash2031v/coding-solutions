@@ -65,7 +65,7 @@ However, it's still optimal to buy only the first item rather than buy any two o
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:38:25.124Z  
+**Submitted:** 2026-08-26T15:39:35.110Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -78,7 +78,13 @@ int main() {
 	while(t--){
 	    int n;
 	    cin>>n;
-	    
+	    int arr[n];
+	    for(int i = 0;i<n;i++){
+	        cin>>arr[i];
+	    }
+	    for(int x:arr){
+	        
+	    }
 	}
 
 }
