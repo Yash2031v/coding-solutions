@@ -73,17 +73,55 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:52:18.617Z  
+**Submitted:** 2026-08-26T15:56:40.093Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+
 using namespace std;
 
-int main() {
-	// your code goes here
-
+void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    
+    // Count the number of mismatched adjacent pairs
+    int k = 0;
+    for (int i = 0; i < n - 1; ++i) {
+        if (s[i] != s[i + 1]) {
+            k++;
+        }
+    }
+    
+    // Calculate the initial beauty
+    int initial_beauty = n - 1 - k;
+    int max_beauty = initial_beauty;
+    
+    // Apply the maximum possible gain based on K
+    if (k >= 3) {
+        max_beauty += 2;
+    } else if (k == 2) {
+        max_beauty += 1;
+    }
+    
+    cout << max_beauty << "\n";
 }
 
+int main() {
+    // Optimize standard I/O operations for competitive programming
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    if (cin >> t) {
+        while (t--) {
+            solve();
+        }
+    }
+    return 0;
+}
 ```
 
 ---
