@@ -74,48 +74,62 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T16:07:01.162Z  
+**Submitted:** 2026-08-26T16:08:57.164Z  
 
 ```c_cpp
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <tuple>
 
 using namespace std;
 
-// Represent range [L, R] constraint updates
+const int MAXN = 4005;
+
 struct Update {
     int L, R;
 };
 
-const int MAXN = 4005;
+struct IntervalA { int L, R, val; };
+struct IntervalB { int L, R, val; };
+
+// Pre-allocate global arrays to avoid ANY dynamic memory allocation in the hot loops
 vector<Update> updates1[MAXN];
 vector<Update> updates2[MAXN];
+int A[MAXN], next_D[MAXN], prev_D[MAXN];
+bool valid[MAXN];
 
-// Fast disjoint-set union for offline range processing
-struct DSU {
-    vector<int> parent;
-    DSU(int n) {
-        parent.resize(n + 2);
-        for(int i = 0; i <= n + 1; ++i) parent[i] = i;
+int A_pts[MAXN];
+int C_pts[MAXN];
+pair<int, int> blocks[MAXN];
+IntervalA A_intervals[MAXN];
+IntervalB B_intervals[MAXN];
+
+int dsu1_parent[MAXN];
+int dsu2_parent[MAXN];
+int max_X1[MAXN];
+int max_X2[MAXN];
+
+int find_dsu(int* parent, int i) {
+    int root = i;
+    while (root != parent[root]) root = parent[root];
+    int curr = i;
+    while (curr != root) {
+        int nxt = parent[curr];
+        parent[curr] = root;
+        curr = nxt;
     }
-    int find(int i) {
-        if (parent[i] == i)
-            return i;
-        return parent[i] = find(parent[i]);
-    }
-};
+    return root;
+}
 
 void solve() {
     int N;
     if (!(cin >> N)) return;
-    vector<int> A(N + 1);
     for(int i = 1; i <= N; ++i) {
         cin >> A[i];
     }
     
-    // Trivial single-element edge case
     if (N == 1) {
         cout << 1 << "\n";
         return;
@@ -124,151 +138,138 @@ void solve() {
     for(int i = 0; i <= N; ++i) {
         updates1[i].clear();
         updates2[i].clear();
+        max_X1[i] = 0;
+        max_X2[i] = 0;
+        dsu1_parent[i] = i;
+        dsu2_parent[i] = i;
     }
+    dsu1_parent[N + 1] = N + 1;
+    dsu2_parent[N + 1] = N + 1;
     
-    // Precalculate local 'removability' criteria
-    vector<bool> valid(N + 2, false);
     valid[1] = true;
     valid[N] = true;
     for(int x = 2; x <= N - 1; ++x) {
         valid[x] = (A[x-1] <= A[x+1]);
     }
     
-    vector<int> next_D(N + 2, N);
     int cur = N;
     for(int i = N; i >= 1; --i) {
         if (i < N && A[i] > A[i+1]) cur = i;
         next_D[i] = cur;
     }
     
-    vector<int> prev_D(N + 2, 0);
     cur = 0;
     for(int i = 1; i <= N; ++i) {
         prev_D[i] = cur;
         if (i < N && A[i] > A[i+1]) cur = i;
     }
     
-    // Process every global AP progression mathematically
+    // Core logic: Heavy operations replaced with lightweight pointer arithmetic
     for(int d = 2; d <= N; ++d) {
         for(int i = 0; i < d; ++i) {
             
-            // Gather Type A Constraints (Non-Removables)
-            vector<int> A_pts;
+            // 1. Gather Type A Constraints
+            int a_sz = 0;
             for(int k = 0; k <= N/d + 1; ++k) {
                 int x = i + k * d;
-                if (x >= 1 && x <= N) {
-                    if (!valid[x]) A_pts.push_back(x);
+                if (x >= 1 && x <= N && !valid[x]) {
+                    A_pts[a_sz++] = x;
                 }
             }
-            if (A_pts.empty() || A_pts.back() < N) {
-                A_pts.push_back(N);
+            if (a_sz == 0 || A_pts[a_sz - 1] < N) {
+                A_pts[a_sz++] = N;
             }
             
-            struct IntervalA { int L, R, val; };
-            vector<IntervalA> A_intervals;
+            int intA_sz = 0;
             int prev_A = 0;
-            for (int a : A_pts) {
-                if (prev_A <= a - 1) {
-                    A_intervals.push_back({prev_A, a - 1, a});
-                }
+            for (int idx = 0; idx < a_sz; ++idx) {
+                int a = A_pts[idx];
+                if (prev_A <= a - 1) A_intervals[intA_sz++] = {prev_A, a - 1, a};
                 prev_A = a;
             }
-            if (prev_A <= N) A_intervals.push_back({prev_A, N, N});
+            if (prev_A <= N) A_intervals[intA_sz++] = {prev_A, N, N};
             
-            // Gather Type B Constraints (Uncovered Descents)
-            vector<int> C;
+            // 2. Gather Type B Constraints
+            int c_sz = 0;
             for(int k = 0; k <= N/d + 1; ++k) {
                 int x1 = i - 1 + k * d;
                 int x2 = i + k * d;
-                if (x1 >= 1 && x1 <= N - 1 && A[x1] > A[x1+1]) C.push_back(x1);
-                if (x2 >= 1 && x2 <= N - 1 && A[x2] > A[x2+1] && x2 != x1) C.push_back(x2);
+                if (x1 >= 1 && x1 < N && A[x1] > A[x1+1]) C_pts[c_sz++] = x1;
+                if (x2 >= 1 && x2 < N && A[x2] > A[x2+1] && x2 != x1) C_pts[c_sz++] = x2;
             }
             
-            // Generate Contiguous Block Exclusions limits via Next Descents 
-            vector<pair<int, int>> blocks;
-            if (!C.empty()) {
-                int first = C[0], last = C[0];
-                for(int j = 1; j < (int)C.size(); ++j) {
-                    if (next_D[last + 1] == C[j]) {
-                        last = C[j];
+            int b_sz = 0;
+            if (c_sz > 0) {
+                int first = C_pts[0], last = C_pts[0];
+                for(int j = 1; j < c_sz; ++j) {
+                    if (next_D[last + 1] == C_pts[j]) {
+                        last = C_pts[j];
                     } else {
-                        blocks.push_back({first, last});
-                        first = C[j];
-                        last = C[j];
+                        blocks[b_sz++] = {first, last};
+                        first = C_pts[j];
+                        last = C_pts[j];
                     }
                 }
-                blocks.push_back({first, last});
+                blocks[b_sz++] = {first, last};
             }
             
-            struct IntervalB { int L, R, val; };
-            vector<IntervalB> B_intervals;
+            int intB_sz = 0;
             int current_L = 1;
-            for (auto& blk : blocks) {
-                int first = blk.first, last = blk.second;
-                int p_D = prev_D[first];
-                int L_start = p_D + 1;
-                int L_end = last;
+            for (int idx = 0; idx < b_sz; ++idx) {
+                int first = blocks[idx].first, last = blocks[idx].second;
+                int L_start = prev_D[first] + 1;
                 
-                if (current_L < L_start) B_intervals.push_back({current_L, L_start - 1, -1});
-                
-                if (L_start <= L_end) {
-                    int b_val = next_D[last + 1];
-                    B_intervals.push_back({max(current_L, L_start), L_end, b_val});
+                if (current_L < L_start) {
+                    B_intervals[intB_sz++] = {current_L, L_start - 1, -1};
                 }
-                current_L = max(current_L, L_end + 1);
+                if (L_start <= last) {
+                    B_intervals[intB_sz++] = {max(current_L, L_start), last, next_D[last + 1]};
+                }
+                current_L = max(current_L, last + 1);
             }
-            if (current_L <= N) B_intervals.push_back({current_L, N, -1});
+            if (current_L <= N) B_intervals[intB_sz++] = {current_L, N, -1};
             
-            // Two-pointer Interval Intersection for piece-wise alignments
+            // 3. Interval Intersection logic
             int i_A = 0, i_B = 0;
-            while(i_A < A_intervals.size() && i_B < B_intervals.size()) {
-                int A_L = A_intervals[i_A].L, A_R = A_intervals[i_A].R, a_val = A_intervals[i_A].val;
-                int B_L = B_intervals[i_B].L, B_R = B_intervals[i_B].R, b_val = B_intervals[i_B].val;
-                
-                int intersect_L = max({A_L, B_L, 1});
-                int intersect_R = min(A_R, B_R);
+            while(i_A < intA_sz && i_B < intB_sz) {
+                int intersect_L = max(A_intervals[i_A].L, B_intervals[i_B].L);
+                intersect_L = max(intersect_L, 1);
+                int intersect_R = min(A_intervals[i_A].R, B_intervals[i_B].R);
                 
                 if (intersect_L <= intersect_R) {
-                    if (b_val != -1) {
-                        int final_val = min(a_val, b_val);
+                    if (B_intervals[i_B].val != -1) {
+                        int final_val = min(A_intervals[i_A].val, B_intervals[i_B].val);
                         updates1[final_val].push_back({intersect_L, intersect_R});
                     } else {
-                        int final_val = a_val;
-                        updates2[final_val].push_back({intersect_L, intersect_R});
+                        updates2[A_intervals[i_A].val].push_back({intersect_L, intersect_R});
                     }
                 }
                 
-                if (A_R < B_R) i_A++;
+                if (A_intervals[i_A].R < B_intervals[i_B].R) i_A++;
                 else i_B++;
             }
         }
     }
     
-    // Evaluate maximum extent using Bucketing and DSU paths resolving overall O(N log* N)
-    vector<int> max_X1(N + 1, 0);
-    DSU dsu1(N);
+    // Evaluate via raw array DSU mappings
     for(int X = N; X >= 1; --X) {
         for(auto& p : updates1[X]) {
-            int L = p.L, R = p.R;
-            int curr = dsu1.find(L);
-            while(curr <= R) {
+            int curr = find_dsu(dsu1_parent, p.L);
+            while(curr <= p.R) {
                 max_X1[curr] = X;
-                dsu1.parent[curr] = curr + 1;
-                curr = dsu1.find(curr);
+                dsu1_parent[curr] = curr + 1;
+                curr = find_dsu(dsu1_parent, curr);
             }
         }
     }
     
-    vector<int> max_X2(N + 1, 0);
-    DSU dsu2(N);
     for(int X = N; X >= 1; --X) {
         for(auto& p : updates2[X]) {
-            int L = p.L, R = p.R;
-            int curr = dsu2.find(L);
-            while(curr <= R) {
+            int curr = find_dsu(dsu2_parent, p.L);
+            while(curr <= p.R) {
                 max_X2[curr] = X;
-                dsu2.parent[curr] = curr + 1;
-                curr = dsu2.find(curr);
+                dsu2_parent[curr] = curr + 1;
+                curr = find_dsu(dsu2_parent, curr);
             }
         }
     }
@@ -276,9 +277,12 @@ void solve() {
     long long ans = 0;
     for(int L = 1; L <= N; ++L) {
         int r = next_D[L];
-        r = max(r, max_X1[L]);
-        r = max(r, min(max_X2[L], next_D[L]));
-        r = min(r, N);
+        if (max_X1[L] > r) r = max_X1[L];
+        
+        int temp2 = max_X2[L] < next_D[L] ? max_X2[L] : next_D[L];
+        if (temp2 > r) r = temp2;
+        
+        if (r > N) r = N;
         ans += (r - L + 1);
     }
     
