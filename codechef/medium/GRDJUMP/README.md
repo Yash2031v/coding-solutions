@@ -65,7 +65,7 @@ For the given costs, this is optimal.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:47:33.169Z  
+**Submitted:** 2026-08-26T15:48:40.180Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -78,6 +78,8 @@ int main() {
 	while(t--){
 	    int a,b,p,q,r;
 	    cin>>a>>b>>p>>q>>r;
+	    int y = a*p;
+	    int x = b*q;
 	    
 	}
 	
