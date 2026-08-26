@@ -80,7 +80,7 @@ Today is day $49$. The next deep cleaning will be on day $50$, so the answer is 
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:33:47.327Z  
+**Submitted:** 2026-08-26T15:35:55.637Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -88,6 +88,11 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int n;
+	cin>>n;
+	
+	int day = (((n/10)+1)*10);
+	cout<<day-n<<endl;;
 
 }
 
