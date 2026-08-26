@@ -79,7 +79,7 @@ Thus, the answer is $[1, 1, 0]$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T16:03:18.926Z  
+**Submitted:** 2026-08-26T16:06:21.601Z  
 
 ```c_cpp
 #include <iostream>
