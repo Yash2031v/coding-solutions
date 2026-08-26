@@ -3,5 +3,10 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int n;
+	cin>>n;
+	
+	int day = (((n/10)+1)*10);
+	cout<<day-n<<endl;;
 
 }
