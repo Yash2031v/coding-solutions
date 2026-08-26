@@ -79,17 +79,77 @@ Thus, the answer is $[1, 1, 0]$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T16:00:03.676Z  
+**Submitted:** 2026-08-26T16:03:18.926Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
 using namespace std;
 
-int main() {
-	// your code goes here
+void solve() {
+    int n;
+    cin >> n;
+    
+    vector<long long> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    
+    string s;
+    cin >> s;
 
+    vector<long long> block_maxes;
+    long long current_max = a[0];
+
+    // Group adjacent elements of the same color and find their maximums
+    for (int i = 1; i < n; i++) {
+        if (s[i] == s[i - 1]) {
+            current_max = max(current_max, a[i]);
+        } else {
+            block_maxes.push_back(current_max);
+            current_max = a[i];
+        }
+    }
+    block_maxes.push_back(current_max);
+
+    // Because the array is circular, if the first and last elements are of the 
+    // same color, they belong to the same continuous block and must be merged.
+    if (s[0] == s[n - 1] && block_maxes.size() > 1) {
+        block_maxes[0] = max(block_maxes[0], block_maxes.back());
+        block_maxes.pop_back();
+    }
+
+    // Find the two largest block maximums
+    long long max1 = 0, max2 = 0;
+    for (long long bm : block_maxes) {
+        if (bm > max1) {
+            max2 = max1;
+            max1 = bm;
+        } else if (bm > max2) {
+            max2 = bm;
+        }
+    }
+
+    // Output the max achievable sum
+    cout << max1 + max2 << "\n";
 }
 
+int main() {
+    // Optimize standard I/O operations for competitive programming
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    if (cin >> t) {
+        while (t--) {
+            solve();
+        }
+    }
+    return 0;
+}
 ```
 
 ---
