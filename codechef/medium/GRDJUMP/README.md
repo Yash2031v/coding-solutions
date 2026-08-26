@@ -65,49 +65,27 @@ For the given costs, this is optimal.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:50:07.951Z  
+**Submitted:** 2026-08-26T15:48:58.563Z  
 
 ```c_cpp
-#include <iostream>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-void solve() {
-    long long A, B, P, Q, R;
-    cin >> A >> B >> P >> Q >> R;
-    
-    long long min_cost = -1;
-    
-    long long limit = min(A, B);
-    for (long long k = 0; k <= limit; k++) {
-        long long cost_diag = k * R;
-        long long cost_right = ((A - k + 1) / 2) * P;
-        long long cost_up = ((B - k + 1) / 2) * Q;
-        
-        long long total_cost = cost_diag + cost_right + cost_up;
-        
-        if (min_cost == -1 || total_cost < min_cost) {
-            min_cost = total_cost;
-        }
-    }
-    
-    cout << min_cost << "\n";
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int a,b,p,q,r;
+	    cin>>a>>b>>p>>q>>r;
+	    int y = a*p;
+	    int x = b*q;
+	    
+	}
+	
+
 }
 
-int main() {
-    // Fast I/O
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    
-    int T;
-    if (cin >> T) {
-        while (T--) {
-            solve();
-        }
-    }
-    return 0;
-}
 ```
 
 ---
