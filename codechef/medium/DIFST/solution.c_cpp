@@ -1,7 +1,124 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <set>
+#include <queue>
+#include <algorithm>
+
 using namespace std;
 
-int main() {
-	// your code goes here
+void solve() {
+    int n;
+    cin >> n;
+    
+    vector<int> p(n + 1);
+    vector<int> pos(n + 1);
+    for (int i = 1; i <= n; i++) {
+        cin >> p[i];
+        pos[p[i]] = i;     // Track the current position of each value
+    }
+    
+    vector<bool> vis(n + 1, false);
+    queue<set<int>> q;
+    
+    // 1. Trace and collect all initial disjoint cycles
+    for (int i = 1; i <= n; i++) {
+        if (!vis[i]) {
+            set<int> s;
+            int curr = i;
+            while (!vis[curr]) {
+                vis[curr] = true;
+                s.insert(curr); 
+                curr = p[curr];
+            }
+            if (s.size() > 1) {
+                q.push(std::move(s));
+            }
+        }
+    }
+    
+    vector<pair<int, int>> swaps;
+    vector<int> path_u, path_v;
+    
+    // 2. Process cycles until all are size 1 (array is sorted)
+    while (!q.empty()) {
+        set<int> s = std::move(q.front());
+        q.pop();
+        
+        int m = *s.begin();      // Min value of the cycle
+        int M = *s.rbegin();     // Max value of the cycle
+        
+        int pm = pos[m];
+        int pM = pos[M];
+        
+        swaps.push_back({pm, pM});
+        
+        // Execute the valid swap logic
+        swap(p[pm], p[pM]);
+        pos[p[pm]] = pm;
+        pos[p[pM]] = pM;
+        
+        // Parallel trace of the newly split cycles (Smaller-Half Trick)
+        int u = pm, v = pM;
+        int curr_u = u, curr_v = v;
+        path_u.clear(); 
+        path_v.clear();
+        bool u_finished = false;
+        
+        while (true) {
+            path_u.push_back(curr_u);
+            curr_u = p[curr_u];
+            if (curr_u == u) {
+                u_finished = true;
+                break;
+            }
+            
+            path_v.push_back(curr_v);
+            curr_v = p[curr_v];
+            if (curr_v == v) {
+                u_finished = false;
+                break;
+            }
+        }
+        
+        // Separate the smaller cycle from the original set to maintain O(N log^2 N) overall time bounds
+        set<int> s_new;
+        if (u_finished) {
+            for (int x : path_u) {
+                s.erase(x);
+                s_new.insert(x);
+            }
+        } else {
+            for (int x : path_v) {
+                s.erase(x);
+                s_new.insert(x);
+            }
+        }
+        
+        if (s.size() > 1) {
+            q.push(std::move(s));
+        }
+        if (s_new.size() > 1) {
+            q.push(std::move(s_new));
+        }
+    }
+    
+    // Print Outputs
+    cout << swaps.size() << "\n";
+    for (auto& pair : swaps) {
+        cout << pair.first << " " << pair.second << "\n";
+    }
+}
 
+int main() {
+    // Fast I/O configuration
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    if (cin >> t) {
+        while (t--) {
+            solve();
+        }
+    }
+    return 0;
 }
