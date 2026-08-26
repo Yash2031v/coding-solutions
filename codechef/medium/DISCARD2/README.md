@@ -79,7 +79,7 @@ Thus, the answer is $[1, 1, 0]$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-26T15:33:26.436Z  
+**Submitted:** 2026-08-26T16:00:03.676Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -87,106 +87,6 @@ using namespace std;
 
 int main() {
 	// your code goes here
-	#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-void solve() {
-    int N;
-    cin >> N;
-    
-    // Arrays strictly named according to problem constraints
-    vector<int> depc(N + 1);
-    vector<int> deqc(N + 1);
-    
-    vector<int> pos_p(N + 1);
-    vector<int> pos_q(N + 1);
-    
-    for (int i = 1; i <= N; i++) {
-        cin >> depc[i];
-        pos_p[depc[i]] = i;
-    }
-    for (int i = 1; i <= N; i++) {
-        cin >> deqc[i];
-        pos_q[deqc[i]] = i;
-    }
-    
-    // V[q] stores the max position in P of all elements strictly to the right of q in Q
-    vector<int> V(N + 1, 0);
-    V[N] = 0;
-    for (int q = N - 1; q >= 1; q--) {
-        V[q] = max(V[q + 1], pos_p[deqc[q + 1]]);
-    }
-    
-    // Precompute logs for Sparse Table O(1) queries
-    vector<int> log_table(N + 1);
-    log_table[1] = 0;
-    for (int i = 2; i <= N; i++) {
-        log_table[i] = log_table[i / 2] + 1;
-    }
-    
-    // Build Sparse Table on (q + V[q])
-    int LOG = log_table[N] + 1;
-    vector<vector<int>> st(LOG, vector<int>(N + 1));
-    for (int i = 1; i <= N; i++) {
-        st[0][i] = i + V[i];
-    }
-    for (int j = 1; j < LOG; j++) {
-        for (int i = 1; i + (1 << j) - 1 <= N; i++) {
-            st[j][i] = min(st[j - 1][i], st[j - 1][i + (1 << (j - 1))]);
-        }
-    }
-    
-    // Lambda to query minimum in a range [L, R]
-    auto query_min = [&](int L, int R) {
-        int j = log_table[R - L + 1];
-        return min(st[j][L], st[j][R - (1 << j) + 1]);
-    };
-    
-    // Process minimum swaps for each K
-    for (int k = 1; k <= N; k++) {
-        int p0 = pos_p[k];
-        int q0 = pos_q[k];
-        
-        // Binary search for the first index where V[idx] <= p0
-        int low = q0, high = N, idx = N;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (V[mid] <= p0) {
-                idx = mid;
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
-        }
-        
-        // Calculate minimal cost depending on the threshold transition
-        int min_val = idx + p0;
-        if (idx > q0) {
-            min_val = min(min_val, query_min(q0, idx - 1));
-        }
-        
-        // The cost mapping is (min_val - Initial state cost offsets)
-        cout << min_val - p0 - q0 << (k == N ? "" : " ");
-    }
-    cout << "\n";
-}
-
-int main() {
-    // Fast I/O
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    
-    int T;
-    if (cin >> T) {
-        while (T--) {
-            solve();
-        }
-    }
-    return 0;
-}
 
 }
 
