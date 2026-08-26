@@ -13,10 +13,10 @@ int main() {
 	        cin>>arr[i];
 	    }
 	    int r = 0;
-	    int m;
 	    for(int i = 0;i<n;i++){
-	        m=arr[i];
-	        r = r +arr[i];
+	        if(arr[i]<=arr[i+1]){
+	            r = arr[i]+arr[i+1];
+	        }
 	    }
 	    cout<<r<<endl;
 	}
