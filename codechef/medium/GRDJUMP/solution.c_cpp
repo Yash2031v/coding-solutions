@@ -8,6 +8,8 @@ int main() {
 	while(t--){
 	    int a,b,p,q,r;
 	    cin>>a>>b>>p>>q>>r;
+	    int y = a*p;
+	    int x = b*q;
 	    
 	}
 	
