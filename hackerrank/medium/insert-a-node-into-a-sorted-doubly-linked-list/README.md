@@ -52,7 +52,7 @@ Each of the test case is in the following format:
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-20T04:43:31.789Z  
+**Submitted:** 2026-08-27T04:16:51.390Z  
 
 ```cpp
 
