@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int n,x,y,g,h;
+	    cin>>n>>x>>y;
+	    if(n%2==0){
+	        cout<<max(n*x,(n/2)*y)<<endl;
+	    }
+	    else{
+	        g = n*x;
+	        h = (n/2)*y+(x);
+	        cout<<max(g,h)<<endl;
+	    }
+	}
+
+}
