@@ -53,7 +53,7 @@ NO
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-29T07:00:53.726Z  
+**Submitted:** 2026-08-29T07:01:03.831Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
