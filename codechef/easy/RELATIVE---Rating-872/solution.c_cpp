@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    long long g,c;
+	    cin>>g>>c;
+	    long long t = c*c;
+	    long long ans = t/(2*g);
+	    cout<<ans<<endl;
+	    
+	}
+
+}
