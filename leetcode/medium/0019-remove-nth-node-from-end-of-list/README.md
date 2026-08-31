@@ -49,8 +49,8 @@ Output: [1]
 
 **Language:** C++  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 15.1 MB (beats 26.78%)  
-**Submitted:** 2026-08-22T11:26:31.124Z  
+**Memory:** 15 MB (beats 59.50%)  
+**Submitted:** 2026-08-31T17:01:46.202Z  
 
 ```cpp
 /**
