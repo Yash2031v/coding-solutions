@@ -46,14 +46,14 @@ Explanation: 2-2 = 1/22 = 1/4 = 0.25
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.7 MB  
-**Submitted:** 2026-09-02T06:44:07.555Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 8.5 MB (beats 93.41%)  
+**Submitted:** 2026-09-02T06:46:14.187Z  
 
 ```cpp
 class Solution {
 public:
-    double myFun(double x,int n){
+    double myFun(double x,long long n){
         if(n==0){
             return 1;
         }else{
@@ -66,7 +66,7 @@ public:
             }
         }
     }
-    double myPow(double x, int n) {
+    double myPow(double x, long long n) {
         if(n>=0){
             return myFun(x,n);
         }
