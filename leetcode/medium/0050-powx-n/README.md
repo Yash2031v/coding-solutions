@@ -47,8 +47,8 @@ Explanation: 2-2 = 1/22 = 1/4 = 0.25
 
 **Language:** C++  
 **Runtime:** 0 ms  
-**Memory:** 8 MB  
-**Submitted:** 2026-09-02T06:21:04.743Z  
+**Memory:** 7.9 MB  
+**Submitted:** 2026-09-02T06:21:48.436Z  
 
 ```cpp
 class Solution {
@@ -57,9 +57,12 @@ public:
         if(n==0){
             return 1;
         }
+        if(x==0){
+            return 0;
+        }
         if(n<0){
             
-            return 1/x*myPow(x,n+1);
+            return 1/x * myPow(x,n+1);
         }
         else{
             return x*myPow(x,n-1);
