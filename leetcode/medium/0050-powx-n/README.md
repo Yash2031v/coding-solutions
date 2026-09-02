@@ -48,12 +48,12 @@ Explanation: 2-2 = 1/22 = 1/4 = 0.25
 **Language:** C++  
 **Runtime:** 0 ms  
 **Memory:** 8 MB  
-**Submitted:** 2026-09-02T06:20:35.575Z  
+**Submitted:** 2026-09-02T06:21:04.743Z  
 
 ```cpp
 class Solution {
 public:
-    long long myPow(double x, int n) {
+    double myPow(double x, int n) {
         if(n==0){
             return 1;
         }
