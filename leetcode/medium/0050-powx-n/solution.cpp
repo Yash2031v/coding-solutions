@@ -1,18 +1,25 @@
 class Solution {
 public:
-    double myPow(double x, int n) {
+    double myFun(double x,int n){
         if(n==0){
             return 1;
+        }else{
+            double temp = myFun(x,n/2);
+            if(n%2==0){
+                return temp*temp;
+            }
+            else{
+                return x*temp*temp;
+            }
         }
-        if(x==0){
-            return 0;
-        }
-        if(n<0){
-            
-            return 1/x * myPow(x,n+1);
+    }
+    double myPow(double x, int n) {
+        if(n>=0){
+            return myFun(x,n);
         }
         else{
-            return x*myPow(x,n-1);
+            double temp = myFun(x,-1*n);
+            return 1/temp;
         }
     }
 };
