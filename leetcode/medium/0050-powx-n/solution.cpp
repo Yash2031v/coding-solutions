@@ -1,6 +1,6 @@
 class Solution {
 public:
-    double myFun(double x,int n){
+    double myFun(double x,long long n){
         if(n==0){
             return 1;
         }else{
@@ -13,7 +13,7 @@ public:
             }
         }
     }
-    double myPow(double x, int n) {
+    double myPow(double x, long long n) {
         if(n>=0){
             return myFun(x,n);
         }
