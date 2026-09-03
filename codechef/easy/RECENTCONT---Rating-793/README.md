@@ -4,73 +4,69 @@
 
 ## Problem
 
-### Recent contest problems
+### Degree of Polynomial
 
- *CodeChef recently revamped its practice page to make it easier for users to identify the next problems they should solve by introducing some new features:* 
+In mathematics, the degree of polynomials in one variable is the highest power of the variable in the algebraic expression with non-zero coefficient.
 
-- Recent Contest Problems - Contains only problems from the last 2 contests
-- Separate Un-Attempted, Attempted, and All tabs
-- Problem Difficulty Rating - The Recommended dropdown menu has various difficulty ranges so that you can attempt the problems most suited to your experience
-- Popular Topics and Tags
+Chef has a polynomial in one variable $x$ with $N$ terms. The polynomial looks like $A_0\cdot x^0 + A_1\cdot x^1 + \ldots + A_{N-2}\cdot x^{N-2} + A_{N-1}\cdot x^{N-1}$ where $A_{i-1}$ denotes the coefficient of the $i^{th}$ term $x^{i-1}$ for all $(1\le i\le N)$.
 
-Chef has been participating regularly in rated contests but missed the last two contests due to his college exams. He now wants to solve them and so he visits the practice page to view these problems.
+Find the degree of the polynomial.
 
-Given a list of $N$ contest codes, where each contest code is either `START38` or `LTIME108`, help Chef count how many problems were featured in each of the contests.
+ **Note:**  It is guaranteed that there exists  **at least**  one term with non-zero coefficient.
 
 ### Input Format
 - First line will contain $T$, number of test cases. Then the test cases follow.
-- Each test case contains of two lines of input.
-- First line of input contains the total count of problems that appeared in the two recent contests - $N$.
-- Second line of input contains the list of $N$ contest codes. Each code is either START38 or LTIME108, to which each problem belongs.
+- First line of each test case contains of a single integer $N$ - the number of terms in the polynomial.
+- Second line of each test case contains of $N$ space-separated integers - the $i^{th}$ integer $A_{i-1}$ corresponds to the coefficient of $x^{i-1}$.
 ### Output Format
 
-For each test case, output two integers in a single new line - the first integer should be the number of problems in `START38`, and the second integer should be the number of problems in `LTIME108`.
+For each test case, output in a single line, the degree of the polynomial.
 
 ### Constraints
-- $1 \leq T \leq 10$
+- $1 \leq T \leq 100$
 - $1 \leq N \leq 1000$
-- Each of the contest codes will be either START38 or LTIME108.
+- $-1000 \le A_i \le 1000$
+- $A_i \ne 0$ for at least one $(0\le i \lt N)$.
 ### Sample 1:
 Input
 Output
 
 ```
 4
-3
-START38 LTIME108 START38
-4
-LTIME108 LTIME108 LTIME108 START38
+1
+5
 2
-LTIME108 LTIME108
-6
-START38 LTIME108 LTIME108 LTIME108 START38 LTIME108
+-3 3
+3
+0 0 5
+4
+1 2 4 0
 
 ```
 
 ```
-2 1
-1 3
-0 2
-2 4
-
+0
+1
+2
+2
 ```
 
 ### Explanation:
 
- **Test case $1$:**  There are $2$ `START38`s in the input, which means that there were $2$ problems in `START38`. Similarly, there was $1$ problem in `LTIME108`.
+ **Test case $1$:**  There is only one term $x^0$ with coefficient $5$. Thus, we are given a constant polynomial and the degree is $0$.
 
- **Test case $2$:**  There is $1$ `START38` in the input, which means that there was $1$ problem in `START38`. Similarly, there were $3$ problems in `LTIME108`.
+ **Test case $2$:**  The polynomial is $-3\cdot x^0 + 3\cdot x^1 = -3 + 3\cdot x$. Thus, the highest power of $x$ with non-zero coefficient is $1$.
 
- **Test case $3$:**  There are no `START38`s in the input, which means that were $0$ problems in `START38`. Similarly, there were $2$ problems in `LTIME108`.
+ **Test case $3$:**  The polynomial is $0\cdot x^0 + 0\cdot x^1 + 5\cdot x^2= 0+0 + 5\cdot x^2$. Thus, the highest power of $x$ with non-zero coefficient is $2$.
 
- **Test case $4$:**  There are $2$ `START38`s in the input, which means that there were $2$ problems in `START38`. Similarly, there were $4$ problems in `LTIME108`.
+ **Test case $4$:**  The polynomial is $1\cdot x^0 + 2\cdot x^1+ 4\cdot x^2 + 0\cdot x^3= 1 + 2\cdot x + 4\cdot x^2$. Thus, the highest power of $x$ with non-zero coefficient is $2$.
 
 ## Solution
 
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-20T16:52:36.440Z  
+**Submitted:** 2026-09-03T15:58:08.409Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -81,18 +77,17 @@ int main() {
 	int t;
 	cin>>t;
 	while(t--){
-	    int n;
-	    cin>>n;
-	    vector<string>s(n);
+	    int n;cin>>n;
+	    int arr[n];
 	    for(int i=0;i<n;i++){
-	        cin>>s[i];
-	    }int count=0;
-	    for(string x:s){
-	        
-	        if(x=="START38"){
-	            count++;
+	        cin>>arr[i];
+	    }int idx=0;
+	    for(int i=0;i<n;i++){
+	        if(arr[i]!=0){
+	            idx=i;
 	        }
-	    }cout<<count<<" "<<n-count<<endl;
+	    }
+	    cout<<idx<<endl;
 	}
 
 }
