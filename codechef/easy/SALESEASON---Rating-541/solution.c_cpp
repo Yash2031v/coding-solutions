@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int count = 0;
+	    int arr[3];
+	    for(int i=0;i<3;i++){
+	        cin>>arr[i];
+	    }
+	    for(int x:arr){
+	        if(x==0){
+	            count++;
+	        }
+	    }
+	    if(count>1){
+	        cout<<"Water filling time"<<endl;
+	    }
+	    else{
+	        cout<<"Not now"<<endl;
+	    }
+	}
+
+}
