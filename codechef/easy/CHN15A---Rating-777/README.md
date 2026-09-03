@@ -54,7 +54,7 @@ After transmogrification, the characteristic values become {12,14,11,45,11}, out
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-03T15:59:07.863Z  
+**Submitted:** 2026-09-03T15:59:02.505Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -65,26 +65,22 @@ int main() {
 	int t;
 	cin>>t;
 	while(t--){
-	    int n,k;
-	    cin>>n>>k;
-	    int arr[n];
+	    int n;
+	    cin>>n;
+	    vector<string>s(n);
 	    for(int i=0;i<n;i++){
-	        cin>>arr[i];
+	        cin>>s[i];
+	    }int count=0;
+	    for(string x:s){
 	        
-	    }
-	    for(int i=0;i<n;i++){
-	        arr[i]=arr[i]+k;
-	        
-	    }
-	    int count =0;
-	    for(int i=0;i<n;i++){
-	        if(arr[i]%7==0){
+	        if(x=="START38"){
 	            count++;
 	        }
-	    }cout<<count<<endl;
-	    
+	    }cout<<count<<" "<<n-count<<endl;
 	}
+
 }
+
 ```
 
 ---
