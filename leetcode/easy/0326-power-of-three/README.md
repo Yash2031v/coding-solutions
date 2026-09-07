@@ -50,9 +50,9 @@ Explanation: There is no x where 3x = (-1).
 ## Solution
 
 **Language:** C++  
-**Runtime:** 4 ms (beats 46.42%)  
-**Memory:** 8.9 MB (beats 74.92%)  
-**Submitted:** 2026-09-07T06:45:38.050Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 8.9 MB (beats 43.12%)  
+**Submitted:** 2026-09-07T06:45:48.605Z  
 
 ```cpp
 class Solution {
