@@ -47,9 +47,9 @@ Output: true
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.8 MB  
-**Submitted:** 2026-09-07T06:46:57.322Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 7.8 MB (beats 80.43%)  
+**Submitted:** 2026-09-07T06:47:06.742Z  
 
 ```cpp
 class Solution {
