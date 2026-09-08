@@ -49,18 +49,15 @@ So the total number of operations required is 1.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 3 ms (beats 12.10%)  
-**Memory:** 9.6 MB (beats 2.08%)  
-**Submitted:** 2026-09-08T06:16:55.299Z  
+**Runtime:** 0 ms  
+**Memory:** 7.8 MB  
+**Submitted:** 2026-09-08T06:17:37.574Z  
 
 ```cpp
 class Solution {
 public:
     int countOperations(int num1, int num2) {
-        if(num1==0){
-            return 0;
-        }
-        if(num2==0){
+        if(num1==0 ||num2==0){
             return 0;
         }
         if(num1>num2){
