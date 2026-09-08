@@ -50,8 +50,8 @@ So the total number of operations required is 1.
 
 **Language:** C++  
 **Runtime:** 3 ms (beats 12.10%)  
-**Memory:** 9.4 MB (beats 2.08%)  
-**Submitted:** 2026-09-08T06:16:46.252Z  
+**Memory:** 9.6 MB (beats 2.08%)  
+**Submitted:** 2026-09-08T06:16:55.299Z  
 
 ```cpp
 class Solution {
