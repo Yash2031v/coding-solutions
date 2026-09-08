@@ -44,26 +44,27 @@ Explanation: There are three ways to climb to the top.
 **Language:** C++  
 **Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 8.7 MB (beats 20.49%)  
-**Submitted:** 2026-09-08T04:35:36.280Z  
+**Submitted:** 2026-09-08T04:40:35.981Z  
 
 ```cpp
 class Solution {
 public:
-     int helper(int n,vector<int>&dat){
-        if(n==-1){
+     int helper(int n,vector<int>&dat,int cur){
+        if(cur==n+1){
             return 0;
         }
-        if(n==0){
+        if(cur==n){
             return 1;
         }
-        if(dat[n]==0){
-            dat[n]= helper(n-1,dat) + helper(n-2,dat);
+        if(dat[cur]==0){
+            dat[cur]= helper(n,dat,cur+1) + helper(n,dat,cur+2);
         }
-        return dat[n];
+        return dat[cur];
      }
     int climbStairs(int n) {
+        int cur = 0;
         vector<int>dat(n+1);
-        return helper(n,dat);
+        return helper(n,dat,cur);
 
     }
 };
