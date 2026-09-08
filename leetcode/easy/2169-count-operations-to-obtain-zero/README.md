@@ -49,9 +49,9 @@ So the total number of operations required is 1.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.8 MB  
-**Submitted:** 2026-09-08T06:17:37.574Z  
+**Runtime:** 4 ms (beats 0.85%)  
+**Memory:** 9.4 MB (beats 2.08%)  
+**Submitted:** 2026-09-08T06:17:46.072Z  
 
 ```cpp
 class Solution {
