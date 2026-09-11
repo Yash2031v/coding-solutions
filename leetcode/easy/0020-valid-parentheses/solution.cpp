@@ -1,13 +1,7 @@
 class Solution {
 public:
     bool check(char a, char b){
-        if(a=='(' && b==')'){
-            return true; 
-        }
-        if(a=='{' && b=='}'){
-            return true; 
-        }
-        if(a=='[' && b==']'){
+        if((a=='(' && b==')') || (a=='{' && b=='}') ||(a=='[' && b==']')){
             return true; 
         }
         return false;
@@ -22,7 +16,9 @@ public:
             if(s[n]=='(' || s[n]=='[' || s[n]=='{'){
                 item.push(s[n]);
             }
-            
+            if (item.empty()) {
+                    return false;
+                }
             else{
                 if(check(item.top(),s[n])){
                     item.pop();
@@ -34,6 +30,9 @@ public:
             }
             n++;
             
+        }
+        if(!item.empty()){
+            return false;
         }
         return true;
     }
