@@ -56,19 +56,13 @@ An input string is valid if:
 **Language:** C++  
 **Runtime:** 0 ms  
 **Memory:** 7.9 MB  
-**Submitted:** 2026-09-11T17:34:37.088Z  
+**Submitted:** 2026-09-11T17:39:09.191Z  
 
 ```cpp
 class Solution {
 public:
     bool check(char a, char b){
-        if(a=='(' && b==')'){
-            return true; 
-        }
-        if(a=='{' && b=='}'){
-            return true; 
-        }
-        if(a=='[' && b==']'){
+        if((a=='(' && b==')') || (a=='{' && b=='}') ||(a=='[' && b==']')){
             return true; 
         }
         return false;
@@ -83,7 +77,9 @@ public:
             if(s[n]=='(' || s[n]=='[' || s[n]=='{'){
                 item.push(s[n]);
             }
-            
+            if (item.empty()) {
+                    return false;
+                }
             else{
                 if(check(item.top(),s[n])){
                     item.pop();
@@ -95,6 +91,9 @@ public:
             }
             n++;
             
+        }
+        if(!item.empty()){
+            return false;
         }
         return true;
     }
