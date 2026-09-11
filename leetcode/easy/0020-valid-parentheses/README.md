@@ -54,9 +54,9 @@ An input string is valid if:
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 7.9 MB  
-**Submitted:** 2026-09-11T17:39:09.191Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 8.8 MB (beats 88.89%)  
+**Submitted:** 2026-09-11T17:40:07.859Z  
 
 ```cpp
 class Solution {
@@ -77,10 +77,11 @@ public:
             if(s[n]=='(' || s[n]=='[' || s[n]=='{'){
                 item.push(s[n]);
             }
-            if (item.empty()) {
+            
+            else{
+                if (item.empty()) {
                     return false;
                 }
-            else{
                 if(check(item.top(),s[n])){
                     item.pop();
                 }
