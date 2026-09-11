@@ -16,10 +16,11 @@ public:
             if(s[n]=='(' || s[n]=='[' || s[n]=='{'){
                 item.push(s[n]);
             }
-            if (item.empty()) {
+            
+            else{
+                if (item.empty()) {
                     return false;
                 }
-            else{
                 if(check(item.top(),s[n])){
                     item.pop();
                 }
