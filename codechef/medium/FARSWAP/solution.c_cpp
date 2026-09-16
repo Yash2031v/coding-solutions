@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const long long MOD = 998244353;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        vector<int> P(N);
+        vector<int> pos(N + 1);
+
+        for (int i = 0; i < N; i++) {
+            cin >> P[i];
+            pos[P[i]] = i;
+        }
+
+        // dp[j] = number of ways where current element
+        // has rank j among current elements
+        vector<long long> dp(N + 1, 0), ndp(N + 1, 0);
+
+        dp[1] = 1;
+
+        // Add values 2, 3, ..., N
+        for (int x = 2; x <= N; x++) {
+
+            vector<long long> pref(x + 1, 0);
+
+            for (int j = 1; j < x; j++) {
+                pref[j] = (pref[j - 1] + dp[j]) % MOD;
+            }
+
+            if (pos[x - 1] < pos[x]) {
+                // x-1 must come before x
+                // Current x must have a larger rank
+                for (int j = 1; j <= x; j++) {
+                    ndp[j] = pref[j - 1];
+                }
+            } 
+            else {
+                // x must come before x-1
+                // Current x must have a smaller rank
+                long long total = 0;
+
+                for (int j = 1; j < x; j++) {
+                    total = (total + dp[j]) % MOD;
+                }
+
+                for (int j = 1; j <= x; j++) {
+                    ndp[j] = (total - pref[j - 1] + MOD) % MOD;
+                }
+            }
+
+            for (int j = 1; j <= x; j++) {
+                dp[j] = ndp[j];
+                ndp[j] = 0;
+            }
+        }
+
+        long long ans = 0;
+
+        for (int j = 1; j <= N; j++) {
+            ans = (ans + dp[j]) % MOD;
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
+}
