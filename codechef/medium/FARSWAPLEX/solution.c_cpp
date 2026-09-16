@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        vector<int> P(N);
+        vector<int> pos(N + 1);
+
+        for (int i = 0; i < N; i++) {
+            cin >> P[i];
+            pos[P[i]] = i;
+        }
+
+        // Graph
+        vector<vector<int>> adj(N + 1);
+        vector<int> indegree(N + 1, 0);
+
+        // Only consecutive values matter
+        for (int x = 1; x < N; x++) {
+            if (pos[x] < pos[x + 1]) {
+                adj[x].push_back(x + 1);
+                indegree[x + 1]++;
+            } else {
+                adj[x + 1].push_back(x);
+                indegree[x]++;
+            }
+        }
+
+        // Min-heap for lexicographically smallest topological sort
+        priority_queue<int, vector<int>, greater<int>> pq;
+
+        for (int i = 1; i <= N; i++) {
+            if (indegree[i] == 0) {
+                pq.push(i);
+            }
+        }
+
+        vector<int> ans;
+
+        while (!pq.empty()) {
+            int u = pq.top();
+            pq.pop();
+
+            ans.push_back(u);
+
+            for (int v : adj[u]) {
+                indegree[v]--;
+
+                if (indegree[v] == 0) {
+                    pq.push(v);
+                }
+            }
+        }
+
+        for (int x : ans) {
+            cout << x << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
