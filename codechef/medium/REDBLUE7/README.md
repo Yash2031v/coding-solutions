@@ -56,10 +56,11 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-16T15:45:17.501Z  
+**Submitted:** 2026-09-16T15:45:50.733Z  
 
 ```c_cpp
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
@@ -71,18 +72,38 @@ int main() {
         int N;
         cin >> N;
 
-        long long sum = 0;
-        long long mn = 1e18;
+        vector<long long> A(N);
+        long long total = 0;
 
         for (int i = 0; i < N; i++) {
-            long long x;
-            cin >> x;
-
-            sum += x;
-            mn = min(mn, x);
+            cin >> A[i];
+            total += A[i];
         }
 
-        long long ans = sum + (N - 2) * mn;
+        sort(A.begin(), A.end());
+
+        // Prefix sum
+        vector<long long> prefix(N + 1, 0);
+
+        for (int i = 0; i < N; i++) {
+            prefix[i + 1] = prefix[i] + A[i];
+        }
+
+        long long ans = 0;
+
+        // Red has r largest elements
+        for (int r = 1; r <= N / 2; r++) {
+
+            // Sum of largest r elements
+            long long SR = total - prefix[N - r];
+
+            // Sum of remaining elements
+            long long SB = prefix[N - r];
+
+            long long value = SR * (N - r) + SB * r;
+
+            ans = max(ans, value);
+        }
 
         cout << ans << endl;
     }
