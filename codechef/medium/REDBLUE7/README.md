@@ -56,17 +56,39 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-16T15:44:02.525Z  
+**Submitted:** 2026-09-16T15:44:24.134Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
-	// your code goes here
+    int T;
+    cin >> T;
 
+    while (T--) {
+        int N;
+        cin >> N;
+
+        long long sum = 0;
+        long long mn = 1e18;
+
+        for (int i = 0; i < N; i++) {
+            long long x;
+            cin >> x;
+
+            sum += x;
+            mn = min(mn, x);
+        }
+
+        long long ans = sum + (N - 2) * mn;
+
+        cout << ans << endl;
+    }
+
+    return 0;
 }
-
 ```
 
 ---
