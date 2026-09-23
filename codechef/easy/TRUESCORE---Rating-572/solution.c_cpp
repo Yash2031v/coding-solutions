@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    int a,b,x,y;
+	    cin>>a>>b>>x>>y;
+	    int d1 = x-a;
+	    int d2 = y-b;
+	    if(d1>=0){
+	        if(d2>=0){
+	            cout<<"POSSIBLE"<<endl;
+	        }
+	        else{
+	            cout<<"IMPOSSIBLE"<<endl;
+	        }
+	    }
+	    else{cout<<"IMPOSSIBLE"<<endl;}
+	    
+	}
+
+}
