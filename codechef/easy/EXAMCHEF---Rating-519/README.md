@@ -62,12 +62,12 @@ Thus, number of students who passed are $50\%$, which is equal to $50\%$.
 
 ## Solution
 
-**Language:** c_cpp  
+**Language:** plain_text  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-03T16:01:49.495Z  
+**Submitted:** 2026-09-26T17:10:42.751Z  
 
-```c_cpp
+```plain_text
 #include <bits/stdc++.h>
 using namespace std;
 
