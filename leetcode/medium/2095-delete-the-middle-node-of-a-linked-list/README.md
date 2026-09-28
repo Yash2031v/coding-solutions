@@ -57,8 +57,8 @@ Node 0 with value 2 is the only node remaining after removing node 1.
 
 **Language:** C++  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 312.1 MB (beats 16.39%)  
-**Submitted:** 2026-09-28T15:57:40.860Z  
+**Memory:** 312 MB (beats 83.88%)  
+**Submitted:** 2026-09-28T16:44:02.908Z  
 
 ```cpp
 /**
