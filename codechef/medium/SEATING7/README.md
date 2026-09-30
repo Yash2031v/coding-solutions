@@ -56,17 +56,55 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-30T16:30:39.684Z  
+**Submitted:** 2026-09-30T16:31:21.842Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
-int main() {
-	// your code goes here
+void solve() {
+    int N, M, K;
+    cin >> N >> M >> K;
 
+    vector<bool> occupied(N + 1, false);
+
+    for (int i = 0; i < M; ++i) {
+        int a;
+        cin >> a;
+        occupied[a] = true;
+    }
+
+    vector<int> assigned_seats;
+    int current_seat = 1;
+
+    for (int person = 0; person < K; ++person) {
+        while (current_seat <= N && occupied[current_seat]) {
+            current_seat++;
+        }
+        assigned_seats.push_back(current_seat);
+        occupied[current_seat] = true;
+    }
+
+    for (int i = 0; i < K; ++i) {
+        cout << assigned_seats[i] << (i == K - 1 ? "" : " ");
+    }
+    cout << "\n";
 }
 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int T;
+    cin >> T;
+    while (T--) {
+        solve();
+    }
+
+    return 0;
+}
 ```
 
 ---
