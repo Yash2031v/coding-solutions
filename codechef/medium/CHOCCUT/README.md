@@ -54,17 +54,29 @@ No
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-30T16:28:39.732Z  
+**Submitted:** 2026-09-30T16:29:23.328Z  
 
 ```c_cpp
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
+void solve() {
+    int N, M;
+    cin >> N >> M;
+    if (N % 2 == 0 || M % 2 == 0) {
+        cout << "Yes\n";
+    } else {
+        cout << "No\n";
+    }
+}
+
 int main() {
-    int B, H, C;
-    if (cin >> B >> H >> C) {
-        cout << min(B / 2, H + C) << endl;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int T;
+    cin >> T;
+    while (T--) {
+        solve();
     }
     return 0;
 }
