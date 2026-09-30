@@ -1,0 +1,11 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int B, H, C;
+    if (cin >> B >> H >> C) {
+        cout << min(B / 2, H + C) << endl;
+    }
+    return 0;
+}
