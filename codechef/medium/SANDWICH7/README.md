@@ -57,17 +57,20 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-30T16:28:17.916Z  
+**Submitted:** 2026-09-30T16:29:49.179Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
-	// your code goes here
-
+    int B, H, C;
+    if (cin >> B >> H >> C) {
+        cout << min(B / 2, H + C) << endl;
+    }
+    return 0;
 }
-
 ```
 
 ---
