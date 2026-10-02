@@ -41,14 +41,14 @@ Explanation: The square root of 8 is 2.82842..., and since we round it down to t
 **Language:** C++  
 **Runtime:** 0 ms  
 **Memory:** 7.8 MB  
-**Submitted:** 2026-10-02T15:12:30.460Z  
+**Submitted:** 2026-10-02T15:13:21.869Z  
 
 ```cpp
 class Solution {
 public:
     int mySqrt(int x) {
-        int low = 1;
-        int high = x;
+        long long low = 1;
+        long long high = x;
         while(low<=high){
             long long mid = (low+high)/2;
             if((mid*mid)<=x)
