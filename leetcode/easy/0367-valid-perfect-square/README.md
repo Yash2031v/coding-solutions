@@ -39,16 +39,16 @@ Explanation: We return false because 3.742 * 3.742 = 14 and 3.742 is not an inte
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 7.7 MB (beats 87.75%)  
-**Submitted:** 2026-10-02T15:28:25.409Z  
+**Runtime:** 0 ms  
+**Memory:** 7.9 MB  
+**Submitted:** 2026-10-02T15:28:01.619Z  
 
 ```cpp
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-        long long low = 1;
-        long long high = num;
+        int low = 1;
+        int high = num;
         while(low<=high){
             long long mid = (low+high)/2;
             if((1ll*mid*mid)==num){
