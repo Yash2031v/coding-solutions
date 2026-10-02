@@ -1,8 +1,8 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        int low = 1;
-        int high = x;
+        long long low = 1;
+        long long high = x;
         while(low<=high){
             long long mid = (low+high)/2;
             if((mid*mid)<=x)
