@@ -54,9 +54,9 @@ Output: 1
 ## Solution
 
 **Language:** C++  
-**Runtime:** 2 ms (beats 56.37%)  
+**Runtime:** 0 ms (beats 100.00%)  
 **Memory:** 8 MB (beats 43.17%)  
-**Submitted:** 2026-10-04T15:55:37.570Z  
+**Submitted:** 2026-10-04T15:55:45.545Z  
 
 ```cpp
 /** 
