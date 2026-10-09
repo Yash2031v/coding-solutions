@@ -3,11 +3,9 @@ using namespace std;
 
 int main() {
 	// your code goes here
-    int t;
-    cin>>t;
-    while(t--){
-        int x,y;
-        cin>>x>>y;
-        cout<<max(x,y)<<endl;
-    }
+	int n;
+	cin>>n;
+	int m = n*2000;
+	cout<<m/500<<endl;
+
 }
