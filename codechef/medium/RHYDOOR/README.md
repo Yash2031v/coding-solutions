@@ -66,7 +66,7 @@ BBBBAAAAABBBBBBB
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-28T15:12:24.403Z  
+**Submitted:** 2026-10-28T15:12:46.816Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -83,8 +83,8 @@ int main() {
 	    cin>>s;
 	    int count = 0;
 	    int gcount=0;
-	    char prev = ' '
-	    for (int i = 0; i < n; i++) {
+	    char prev = ' ';
+	    for(int i = 0; i < n; i++) {
             if (s[i] == prev) {
                 count++;
             } else {
