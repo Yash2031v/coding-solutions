@@ -17,6 +17,10 @@ int main() {
 	        if(s[i]=='1'){
 	            count++;
 	        }
+	        
+	    }
+	    if(s[0]==s[n-1]){
+	        count--;
 	    }
 	    cout<<count<<endl;
 	}
