@@ -66,7 +66,7 @@ BBBBAAAAABBBBBBB
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-28T15:12:46.816Z  
+**Submitted:** 2026-10-28T15:03:46.309Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -81,23 +81,7 @@ int main() {
 	    cin>>n;
 	    string s;
 	    cin>>s;
-	    int count = 0;
-	    int gcount=0;
-	    char prev = ' ';
-	    for(int i = 0; i < n; i++) {
-            if (s[i] == prev) {
-                count++;
-            } else {
-                prev = s[i];
-                count = 1;
-            }
-
-            if (count == 3) {
-                gcount++;
-                count = 0;
-            }
-        }
-	    cout<<gcount<<endl;
+	    
 	}
 
 }
