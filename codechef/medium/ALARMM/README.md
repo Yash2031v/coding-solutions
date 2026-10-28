@@ -70,36 +70,45 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-28T15:19:24.400Z  
+**Submitted:** 2026-10-28T15:23:09.391Z  
 
 ```c_cpp
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int n;
-	    cin>>n;
-	    int k;
-	    cin>>k;
-	    string s;
-	    cin>>s;
-	    int count = 0;
-	    for(int i = 0;i<n;i++){
-	        if(s[i]=='1'){
-	            count++;
-	        }
-	        
-	    }
-	    if(s[0]==s[n-1]){
-	        count--;
-	    }
-	    cout<<count<<endl;
-	}
+    int t;
+    cin >> t;
 
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+
+        string s;
+        cin >> s;
+
+        int ans = 0;
+        int i = 0;
+
+        while (i < n) {
+            if (s[i] == '1') {
+                ans++;
+                i++;
+                int start = max(0, i - k - 1);
+
+                while (i < n && i <= start + k && s[i] == '0') {
+                    i++;
+                }
+            } else {
+                i++;
+            }
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
 }
 
 ```
