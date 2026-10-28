@@ -70,7 +70,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-28T15:16:17.929Z  
+**Submitted:** 2026-10-28T15:19:53.732Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -92,6 +92,10 @@ int main() {
 	        if(s[i]=='1'){
 	            count++;
 	        }
+	        
+	    }
+	    if(s[0]==s[n-1]){
+	        count--;
 	    }
 	    cout<<count<<endl;
 	}
