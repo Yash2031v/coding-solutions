@@ -70,38 +70,42 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-28T15:19:53.732Z  
+**Submitted:** 2026-10-28T15:25:08.272Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+
 using namespace std;
 
-int main() {
-	// your code goes here
-	int t;
-	cin>>t;
-	while(t--){
-	    int n;
-	    cin>>n;
-	    int k;
-	    cin>>k;
-	    string s;
-	    cin>>s;
-	    int count = 0;
-	    for(int i = 0;i<n;i++){
-	        if(s[i]=='1'){
-	            count++;
-	        }
-	        
-	    }
-	    if(s[0]==s[n-1]){
-	        count--;
-	    }
-	    cout<<count<<endl;
-	}
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
 
+    int alarms = 0;
+    for (int i = 0; i < n; ) {
+        if (s[i] == '1') {
+            alarms++;
+            i += k + 1; // Protected up to i + k, next room to check is i + k + 1
+        } else {
+            i++;
+        }
+    }
+    cout << alarms << "\n";
 }
 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
 ```
 
 ---
