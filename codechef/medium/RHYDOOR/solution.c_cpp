@@ -12,8 +12,8 @@ int main() {
 	    cin>>s;
 	    int count = 0;
 	    int gcount=0;
-	    char prev = ' '
-	    for (int i = 0; i < n; i++) {
+	    char prev = ' ';
+	    for(int i = 0; i < n; i++) {
             if (s[i] == prev) {
                 count++;
             } else {
