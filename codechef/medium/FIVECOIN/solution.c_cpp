@@ -7,7 +7,7 @@ int main() {
 	cin>>n;
 	int count = 0;
 	if(n>=5){
-	    count++;
+	    count = n/5;
 	}
 	cout<<count+n%5<<endl;
 }
