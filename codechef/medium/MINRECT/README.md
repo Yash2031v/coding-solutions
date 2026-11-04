@@ -75,15 +75,45 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:25:55.817Z  
+**Submitted:** 2026-11-04T15:30:20.543Z  
 
 ```c_cpp
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
+    int t;
+    cin >> t;
 
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+
+        int mRow = n, mxRow = -1;
+        int mCol = m, mxCol = -1;
+
+        for (int i = 0; i < n; i++) {
+            string s;
+            cin >> s;
+
+            for (int j = 0; j < m; j++) {
+                if (s[j] == '1') {
+                    mRow = min(mRow, i);
+                    mxRow = max(mxRow, i);
+
+                    mCol = min(mCol, j);
+                    mxCol = max(mxCol, j);
+                }
+            }
+        }
+
+        int h = mxRow-mRow+1;
+        int w = mxCol-mCol+1;
+        cout<<h*w<<endl;
+    }
+
+    return 0;
 }
 
 ```
