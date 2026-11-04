@@ -72,10 +72,11 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:31:32.137Z  
+**Submitted:** 2026-11-04T15:31:24.338Z  
 
 ```c_cpp
-include <bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -83,37 +84,35 @@ int main() {
     cin >> t;
 
     while (t--) {
-        int n;
-        cin >> n;
+        int n, m;
+        cin >> n >> m;
 
-        int a[105];
-
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-        }
-
-        int ans = 0;
+        int mRow = n, mxRow = -1;
+        int mCol = m, mxCol = -1;
 
         for (int i = 0; i < n; i++) {
-            int odd = 0;
+            string s;
+            cin >> s;
 
-            for (int j = i; j < n; j++) {
+            for (int j = 0; j < m; j++) {
+                if (s[j] == '1') {
+                    mRow = min(mRow, i);
+                    mxRow = max(mxRow, i);
 
-                if (a[j] % 2 != 0) {
-                    odd++;
-                }
-
-                if (odd % 2 == 0) {
-                    ans = max(ans, j - i + 1);
+                    mCol = min(mCol, j);
+                    mxCol = max(mxCol, j);
                 }
             }
         }
 
-        cout << ans << '\n';
+        int h = mxRow-mRow+1;
+        int w = mxCol-mCol+1;
+        cout<<h*w<<endl;
     }
 
     return 0;
 }
+
 ```
 
 ---
