@@ -78,47 +78,54 @@ Use the $5$-rupee coin and three $1$-rupee coins.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:30:08.139Z  
+**Submitted:** 2026-11-04T15:27:03.536Z  
 
 ```c_cpp
-
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int t;
-    cin >> t;
-
-    while (t--) {
-        int n, m;
-        cin >> n >> m;
-
-        int mRow = n, mxRow = -1;
-        int mCol = m, mxCol = -1;
-
-        for (int i = 0; i < n; i++) {
-            string s;
-            cin >> s;
-
-            for (int j = 0; j < m; j++) {
-                if (s[j] == '1') {
-                    mRow = min(mRow, i);
-                    mxRow = max(mxRow, i);
-
-                    mCol = min(mCol, j);
-                    mxCol = max(mxCol, j);
-                }
+void solve() {
+    int N, M;
+    if (!(cin >> N >> M)) return;
+    
+    vector<string> grid(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> grid[i];
+    }
+    
+    int min_r = N, max_r = -1;
+    int min_c = M, max_c = -1;
+    
+    // Find the bounding box containing all '1's
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            if (grid[i][j] == '1') {
+                min_r = min(min_r, i);
+                max_r = max(max_r, i);
+                min_c = min(min_c, j);
+                max_c = max(max_c, j);
             }
         }
-
-        int h = mxRow-mRow+1;
-        int w = mxCol-mCol+1;
-        cout<<h*w<<endl;
     }
-
-    return 0;
+    
+    // Calculate area of the smallest enclosing rectangle
+    long long area = (long long)(max_r - min_r + 1) * (max_c - min_c + 1);
+    cout << area << "\n";
 }
 
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
+}
 ```
 
 ---
