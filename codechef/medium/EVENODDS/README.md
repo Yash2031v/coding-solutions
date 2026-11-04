@@ -72,47 +72,48 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:30:53.594Z  
+**Submitted:** 2026-11-04T15:32:41.548Z  
 
 ```c_cpp
-
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int t;
-    cin >> t;
+    cin>>t;
 
     while (t--) {
-        int n, m;
-        cin >> n >> m;
+        int n;
+        cin>>n;
 
-        int mRow = n, mxRow = -1;
-        int mCol = m, mxCol = -1;
+        int a[105];
 
-        for (int i = 0; i < n; i++) {
-            string s;
-            cin >> s;
+        for(int i=0; i<n; i++) {
+            cin>>a[i];
+        }
 
-            for (int j = 0; j < m; j++) {
-                if (s[j] == '1') {
-                    mRow = min(mRow, i);
-                    mxRow = max(mxRow, i);
+        int ans=0;
 
-                    mCol = min(mCol, j);
-                    mxCol = max(mxCol, j);
+        for(int i = 0; i < n; i++) {
+            int odd = 0;
+
+            for (int j = i; j < n; j++) {
+
+                if (a[j] % 2 != 0) {
+                    odd++;
+                }
+
+                if (odd % 2 == 0) {
+                    ans = max(ans, j - i + 1);
                 }
             }
         }
 
-        int h = mxRow-mRow+1;
-        int w = mxCol-mCol+1;
-        cout<<h*w<<endl;
+        cout<<ans<<endl;
     }
 
     return 0;
 }
-
 ```
 
 ---
