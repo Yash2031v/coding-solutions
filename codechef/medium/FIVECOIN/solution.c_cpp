@@ -1,17 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void solve() {
+    int N, M;
+    if (!(cin >> N >> M)) return;
+    
+    vector<string> grid(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> grid[i];
+    }
+    
+    int min_r = N, max_r = -1;
+    int min_c = M, max_c = -1;
+    
+    // Find the bounding box containing all '1's
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < M; ++j) {
+            if (grid[i][j] == '1') {
+                min_r = min(min_r, i);
+                max_r = max(max_r, i);
+                min_c = min(min_c, j);
+                max_c = max(max_c, j);
+            }
+        }
+    }
+    
+    // Calculate area of the smallest enclosing rectangle
+    long long area = (long long)(max_r - min_r + 1) * (max_c - min_c + 1);
+    cout << area << "\n";
+}
+
 int main() {
-	// your code goes here
-	int n;
-	cin>>n;
-	int count = 0;
-	if(n>=5){
-	    n=n-5;
-	   
-	    cout<<n+1<<endl;
-	}else{
-	    cout<<n<<endl;
-	}
-	
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
 }
