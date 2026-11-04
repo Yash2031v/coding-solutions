@@ -65,15 +65,52 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:33:29.825Z  
+**Submitted:** 2026-11-04T15:34:11.982Z  
 
 ```c_cpp
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
+    int t;
+    cin >> t;
 
+    while (t--) {
+        long long x, y, d;
+        cin >> x >> y >> d;
+
+        long long a = x, b = y;
+        long long lastA = 0, lastB = 0;
+
+        while (true) {
+
+            if (a < b) {
+                if (lastB != 0 && a - lastB <= d) {
+                    cout << a << '\n';
+                    break;
+                }
+
+                lastA = a;
+                a += x;
+            }
+            else if (b < a) {
+                if (lastA != 0 && b - lastA <= d) {
+                    cout << b << '\n';
+                    break;
+                }
+
+                lastB = b;
+                b += y;
+            }
+            else {
+                cout << a << '\n';
+                break;
+            }
+        }
+    }
+
+    return 0;
 }
 
 ```
