@@ -78,7 +78,7 @@ Use the $5$-rupee coin and three $1$-rupee coins.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:23:44.010Z  
+**Submitted:** 2026-11-04T15:26:54.409Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
