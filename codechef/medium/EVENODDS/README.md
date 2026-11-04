@@ -72,29 +72,29 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:32:41.548Z  
+**Submitted:** 2026-11-04T15:31:32.137Z  
 
 ```c_cpp
-#include <bits/stdc++.h>
+include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int t;
-    cin>>t;
+    cin >> t;
 
     while (t--) {
         int n;
-        cin>>n;
+        cin >> n;
 
         int a[105];
 
-        for(int i=0; i<n; i++) {
-            cin>>a[i];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
         }
 
-        int ans=0;
+        int ans = 0;
 
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             int odd = 0;
 
             for (int j = i; j < n; j++) {
@@ -109,7 +109,7 @@ int main() {
             }
         }
 
-        cout<<ans<<endl;
+        cout << ans << '\n';
     }
 
     return 0;
