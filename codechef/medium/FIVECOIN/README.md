@@ -78,7 +78,7 @@ Use the $5$-rupee coin and three $1$-rupee coins.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-04T15:20:34.439Z  
+**Submitted:** 2026-11-04T15:23:44.010Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -90,11 +90,14 @@ int main() {
 	cin>>n;
 	int count = 0;
 	if(n>=5){
-	    count = n/5;
+	    n=n-5;
+	   
+	    cout<<n+1<<endl;
+	}else{
+	    cout<<n<<endl;
 	}
-	cout<<count+n%5<<endl;
+	
 }
-
 ```
 
 ---
