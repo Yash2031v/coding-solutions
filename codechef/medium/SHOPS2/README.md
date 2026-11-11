@@ -60,7 +60,7 @@ If Chef went to both stores, the cost would be $\ge 200$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:42:47.798Z  
+**Submitted:** 2026-11-11T15:43:24.778Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
