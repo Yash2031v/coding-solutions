@@ -60,7 +60,7 @@ If Chef went to both stores, the cost would be $\ge 200$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:43:24.778Z  
+**Submitted:** 2026-11-11T15:44:11.781Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -68,6 +68,14 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int N;
+	cin>>N;
+	while(N--){
+	    int N;
+	    int D;
+	    cin>>N;
+	    
+	}
 
 }
 
