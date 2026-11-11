@@ -64,7 +64,7 @@ It is impossible for Chef to win.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:41:37.475Z  
+**Submitted:** 2026-11-11T15:40:35.114Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -75,13 +75,7 @@ int main() {
 	int B;
 	cin>>R;
 	cin>>B;
-	if(B*6<=R){
-	    cout<<"YES"<<endl;
-	    
-	}
-	else{
-	    cout<<"NO"<<endl;
-	}
+	
 
 }
 
