@@ -60,17 +60,114 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:57:46.115Z  
+**Submitted:** 2026-11-11T16:01:42.966Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	// your code goes here
+using ll = long long;
 
+struct State {
+    ll score;
+    int swaps;
+};
+
+// Custom comparator to maximize score, then minimize swaps
+bool better(State a, State b) {
+    if (a.score != b.score)
+        return a.score > b.score;
+    return a.swaps < b.swaps;
 }
 
+void solve() {
+    int N;
+    cin >> N;
+
+    vector<ll> A(N);
+    for (int i = 0; i < N; i++) {
+        cin >> A[i];
+    }
+
+    int m = N / 2;
+    State dp[2];
+
+    // dp[0] = didn't swap the outermost pair
+    // dp[1] = swapped the outermost pair
+    dp[0] = {0, 0};
+    dp[1] = {0, 1};
+
+    for (int i = 1; i < m; i++) {
+        State ndp[2];
+
+        // c is the state of the CURRENT pair (i and N-1-i)
+        for (int c = 0; c < 2; c++) {
+            ndp[c] = {-1, INT_MAX};
+
+            ll Lc = c ? A[N - 1 - i] : A[i];
+            ll Rc = c ? A[i] : A[N - 1 - i];
+
+            // p is the state of the PREVIOUS pair (i-1 and N-i)
+            for (int p = 0; p < 2; p++) {
+                ll Lp = p ? A[N - i] : A[i - 1];
+                ll Rp = p ? A[i - 1] : A[N - i];
+
+                State cur;
+                cur.score = dp[p].score 
+                            + abs(Lp - Lc) 
+                            + abs(Rp - Rc);
+                cur.swaps = dp[p].swaps + c;
+
+                if (better(cur, ndp[c])) {
+                    ndp[c] = cur;
+                }
+            }
+        }
+        dp[0] = ndp[0];
+        dp[1] = ndp[1];
+    }
+
+    State ans = {-1, INT_MAX};
+
+    // Tie up the middle elements
+    for (int p = 0; p < 2; p++) {
+        // FIXED: Using A[N-m] instead of A[0] connects the innermost elements
+        ll L = p ? A[N - m] : A[m - 1];
+        ll R = p ? A[m - 1] : A[N - m];
+
+        State cur = dp[p];
+
+        if (N % 2 == 1) {
+            // Odd length: connect both innermost elements to the absolute middle
+            ll mid = A[m];
+            cur.score += abs(L - mid) + abs(R - mid);
+        }
+        else {
+            // Even length: connect the two innermost elements directly together
+            cur.score += abs(L - R);
+        }
+
+        if (better(cur, ans)) {
+            ans = cur;
+        }
+    }
+
+    cout << ans.score << " " << ans.swaps << "\n";
+}
+
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int T;
+    cin >> T;
+    while (T--) {
+        solve();
+    }
+
+    return 0;
+}
 ```
 
 ---
