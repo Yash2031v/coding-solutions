@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void solve() {
+    int N;
+    cin >> N;
+    
+    // Using 1-based indexing for ease of implementation
+    vector<long long> A(N + 1);
+    for (int i = 1; i <= N; ++i) {
+        cin >> A[i];
+    }
+
+    // Difference array to keep track of range additions.
+    // Size is N + 2 to safely accommodate diff[i + X + 1] when i + X = N.
+    vector<long long> diff(N + 2, 0);
+    
+    long long current_add = 0;
+    long long total_moved = 0;
+
+    for (int i = 1; i <= N; ++i) {
+        // Accumulate the sweep line difference to know the actual incoming stones
+        current_add += diff[i];
+        
+        // Compute the actual number of stones at pile i presently
+        long long current_stones = A[i] + current_add;
+        
+        // Number of stones we are moving from this pile
+        long long X = min(current_stones, (long long)(N - i));
+        total_moved += X;
+
+        // Apply range updates for the stones being distributed forward
+        if (X > 0) {
+            diff[i + 1] += 1;
+            diff[i + X + 1] -= 1;
+        }
+    }
+
+    cout << total_moved << "\n";
+}
+
+int main() {
+    // Fast I/O
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int T;
+    if (cin >> T) {
+        while (T--) {
+            solve();
+        }
+    }
+    return 0;
+}
