@@ -60,45 +60,27 @@ If Chef went to both stores, the cost would be $\ge 200$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:52:30.002Z  
+**Submitted:** 2026-11-11T15:45:20.779Z  
 
 ```c_cpp
-
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    int T;
-    cin >> T;
+	// your code goes here
+	int N;
+	cin>>N;
+	while(N--){
+	    int N;
+	    int D;
+	    cin>>N;
+	    int A[N];
+	    for(int i=0; i<=N; i++){
+	        cin>>A[i];
+	    }
+	    
+	}
 
-    while (T--) {
-        int N, D;
-        cin >> N >> D;
-
-        int A[N], B[N];
-
-        for (int i = 0; i < N; i++) {
-            cin >> A[i];
-        }
-
-        for (int i = 0; i < N; i++) {
-            cin >> B[i];
-        }
-
-        int cost1 = D;
-        int cost2 = D;
-        int cost3 = 2 * D;
-
-        for (int i = 0; i < N; i++) {
-            cost1 += A[i];
-            cost2 += B[i];
-            cost3 += min(A[i], B[i]);
-        }
-
-        cout << min({cost1, cost2, cost3}) << endl;
-    }
-
-    return 0;
 }
 
 ```
