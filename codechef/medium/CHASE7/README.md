@@ -64,14 +64,18 @@ It is impossible for Chef to win.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T15:39:29.136Z  
+**Submitted:** 2026-11-11T15:40:20.117Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
+	int R;
+	int B;
+	cin>>R;
+	cin>>B;
+	
 
 }
 
