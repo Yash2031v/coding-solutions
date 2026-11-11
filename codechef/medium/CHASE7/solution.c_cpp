@@ -2,10 +2,6 @@
 using namespace std;
 
 int main() {
-	int R;
-	int B;
-	cin>>R;
-	cin>>B;
-	
+	// your code goes here
 
 }
