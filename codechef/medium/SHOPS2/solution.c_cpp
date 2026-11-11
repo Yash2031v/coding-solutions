@@ -3,5 +3,13 @@ using namespace std;
 
 int main() {
 	// your code goes here
+	int N;
+	cin>>N;
+	while(N--){
+	    int N;
+	    int D;
+	    cin>>N;
+	    
+	}
 
 }
