@@ -6,6 +6,12 @@ int main() {
 	int B;
 	cin>>R;
 	cin>>B;
-	
+	if(B*6<=R){
+	    cout<<"YES"<<endl;
+	    
+	}
+	else{
+	    cout<<"NO"<<endl;
+	}
 
 }
