@@ -25,7 +25,7 @@ Print the tree's inorder traversal as a single line of space-separated values.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-05T15:02:33.714Z  
+**Submitted:** 2026-11-12T16:01:50.885Z  
 
 ```cpp
 
@@ -48,12 +48,14 @@ class Node {
 */
 
     void inOrder(Node *root) {
-        if(root==NULL){
+        if(root == NULL){
             return ;
+            
         }
         inOrder(root->left);
         cout<<root->data<<" ";
         inOrder(root->right);
+
     }
 
 
