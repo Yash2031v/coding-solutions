@@ -19,7 +19,7 @@ class Node {
 
 
     void postOrder(Node *root) {
-        if(root==NULL){
+        if(root == NULL){
             return ;
         }
         postOrder(root->left);
