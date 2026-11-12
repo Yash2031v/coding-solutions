@@ -4,52 +4,27 @@
 
 ## Problem
 
-Complete the function in the editor below, which has parameter: a pointer to the root of a binary tree. It must print the values in the tree's preorder traversal as a single line of space-separated values.
+Complete the $preOrder$ function in the editor below, which has $1$ parameter: a pointer to the root of a binary tree. It must print the values in the tree's preorder traversal as a single line of space-separated values.  
 
- **Input Format** 
 
-Our test code passes the root node of a binary tree to the  *preOrder*  function.
+**Input Format**
 
- **Constraints** 
+Our test code passes the root node of a binary tree to the *preOrder* function.
 
-Nodes in the tree
+**Constraints**
 
- **Output Format** 
+  $1 \leq$ Nodes in the tree  $\leq 500 $
+
+**Output Format**
 
 Print the tree's preorder traversal as a single line of space-separated values.
-
- **Sample Input** 
-
-```
-     1
-      \
-       2
-        \
-         5
-        /  \
-       3    6
-        \
-         4  
-
-```
-
- **Sample Output** 
-
-```
-1 2 5 3 4 6 
-
-```
-
- **Explanation** 
-
-The preorder traversal of the binary tree is printed.
 
 ## Solution
 
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-29T06:51:37.295Z  
+**Submitted:** 2026-11-12T15:58:12.602Z  
 
 ```cpp
 
@@ -72,11 +47,13 @@ class Node {
 */
 
     void preOrder(Node *root) {
-        if(root!=NULL){
-            std::cout<<root->data<<" ";
-            preOrder(root->left);
-            preOrder(root->right);
+        if(root == NULL){
+            return ;
         }
+        cout<<root->data<<" ";
+        preOrder(root->left);
+        preOrder(root->right);
+
     }
 
 
