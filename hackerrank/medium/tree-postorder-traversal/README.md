@@ -23,7 +23,7 @@ Print the tree's postorder traversal as a single line of space-separated values.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-05T14:59:52.658Z  
+**Submitted:** 2026-11-12T15:59:53.771Z  
 
 ```cpp
 
@@ -47,7 +47,7 @@ class Node {
 
 
     void postOrder(Node *root) {
-        if(root==NULL){
+        if(root == NULL){
             return ;
         }
         postOrder(root->left);
