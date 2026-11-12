@@ -18,11 +18,13 @@ class Node {
 */
 
     void inOrder(Node *root) {
-        if(root==NULL){
+        if(root == NULL){
             return ;
+            
         }
         inOrder(root->left);
         cout<<root->data<<" ";
         inOrder(root->right);
+
     }
 
