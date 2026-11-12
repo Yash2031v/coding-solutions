@@ -18,10 +18,12 @@ class Node {
 */
 
     void preOrder(Node *root) {
-        if(root!=NULL){
-            std::cout<<root->data<<" ";
-            preOrder(root->left);
-            preOrder(root->right);
+        if(root == NULL){
+            return ;
         }
+        cout<<root->data<<" ";
+        preOrder(root->left);
+        preOrder(root->right);
+
     }
 
