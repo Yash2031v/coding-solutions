@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<string> grid(n, string(m, '.'));
+    vector<pair<int, int>> rooks;
+
+    auto can_add = [&](int r, int c) {
+        if (grid[r][c] == 'R') return false;
+        int row_cnt = 0, col_cnt = 0;
+        for (int j = 0; j < m; ++j) if (grid[r][j] == 'R') ++row_cnt;
+        for (int i = 0; i < n; ++i) if (grid[i][c] == 'R') ++col_cnt;
+        return row_cnt < 2 && col_cnt < 2;
+    };
+
+    auto attacks_count = [&](int r, int c) {
+        int atk = 0;
+        // Left neighbor in row r
+        for (int j = c - 1; j >= 0; --j) {
+            if (grid[r][j] == 'R') { ++atk; break; }
+        }
+        // Right neighbor in row r
+        for (int j = c + 1; j < m; ++j) {
+            if (grid[r][j] == 'R') { ++atk; break; }
+        }
+        // Up neighbor in col c
+        for (int i = r - 1; i >= 0; --i) {
+            if (grid[i][c] == 'R') { ++atk; break; }
+        }
+        // Down neighbor in col c
+        for (int i = r + 1; i < n; ++i) {
+            if (grid[i][c] == 'R') { ++atk; break; }
+        }
+        return atk;
+    };
+
+    auto valid_all = [&]() {
+        for (auto [r, c] : rooks) {
+            if (attacks_count(r, c) > 1) return false;
+        }
+        return true;
+    };
+
+    // Greedily add rooks only when every existing & new rook keeps attacks <= 1
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            if (!can_add(i, j)) continue;
+            grid[i][j] = 'R';
+            rooks.push_back({i, j});
+            if (!valid_all()) {
+                grid[i][j] = '.';
+                rooks.pop_back();
+            }
+        }
+    }
+
+    cout << rooks.size() << '\n';
+    for (const auto& row : grid) {
+        cout << row << '\n';
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
