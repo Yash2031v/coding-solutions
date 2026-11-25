@@ -36,9 +36,9 @@ Output: 2
 ## Solution
 
 **Language:** C++  
-**Runtime:** 2 ms (beats 6.31%)  
-**Memory:** 22 MB (beats 77.93%)  
-**Submitted:** 2026-11-25T06:58:50.489Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 22.1 MB (beats 50.82%)  
+**Submitted:** 2026-11-25T07:00:23.040Z  
 
 ```cpp
 /**
@@ -55,10 +55,8 @@ Output: 2
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        if(root==NULL){
-            return 0;
-        }
-        return 1+max(maxDepth(root->left),maxDepth(root->right));
+        if(root==NULL)return 0;
+        return max(maxDepth(root->left),maxDepth(root->right)) + 1;
         
         
     }
