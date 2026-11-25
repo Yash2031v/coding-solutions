@@ -1,15 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-int chess(int r){
-    if(r==2){
-	    return 5;
-	}
-	return 8-r;
-}
+
 int main() {
-	int R;
-	cin>>R;
-	cout<<chess(R)<<endl;
 	
 
 }
