@@ -37,9 +37,9 @@ Output: 0
 ## Solution
 
 **Language:** C++  
-**Runtime:** 0 ms  
-**Memory:** 8.1 MB  
-**Submitted:** 2026-10-05T14:50:21.480Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 16.1 MB (beats 41.81%)  
+**Submitted:** 2026-11-25T06:48:20.081Z  
 
 ```cpp
 /**
@@ -55,21 +55,26 @@ Output: 0
  */
 class Solution {
 public:
-    int traversalLeft(TreeNode* root){
-        if(root->left==NULL){
-            return root->val;
-        }
-        return traversalLeft(root->left);
-    }
-    int sumOfLeftLeaves(TreeNode* root) {
-        if(root->right==NULL && root->left==NULL){
+    int sum(TreeNode* root ,bool fun){
+        if(root == NULL) 
+            return 0;
+        if(root->left == NULL && root->right == NULL) {
+            if(fun){ 
+                return root->val;
+                }
             return 0;
         }
-        if(root->right==NULL){
-            return traversalLeft(root);
-        }
-        return traversalLeft(root)+traversalLeft(root->right);
+        return sum(root->left, true) + sum(root->right, false);
         
+    }
+
+
+        
+
+    int sumOfLeftLeaves(TreeNode* root) {
+        if(root == NULL) 
+            return 0;
+        return sum(root->left,true) + sum(root->right,false);
     }
 };
 ```
