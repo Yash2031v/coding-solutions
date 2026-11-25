@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 void solve() {
     int n, m;
     cin >> n >> m;
@@ -5,17 +8,29 @@ void solve() {
     vector<string> grid(n, string(m, '.'));
     vector<pair<int, int>> rooks;
 
+    auto can_add = [&](int r, int c) {
+        if (grid[r][c] == 'R') return false;
+        int row_cnt = 0, col_cnt = 0;
+        for (int j = 0; j < m; ++j) if (grid[r][j] == 'R') ++row_cnt;
+        for (int i = 0; i < n; ++i) if (grid[i][c] == 'R') ++col_cnt;
+        return row_cnt < 2 && col_cnt < 2;
+    };
+
     auto attacks_count = [&](int r, int c) {
         int atk = 0;
+        // Left neighbor in row r
         for (int j = c - 1; j >= 0; --j) {
             if (grid[r][j] == 'R') { ++atk; break; }
         }
+        // Right neighbor in row r
         for (int j = c + 1; j < m; ++j) {
             if (grid[r][j] == 'R') { ++atk; break; }
         }
+        // Up neighbor in col c
         for (int i = r - 1; i >= 0; --i) {
             if (grid[i][c] == 'R') { ++atk; break; }
         }
+        // Down neighbor in col c
         for (int i = r + 1; i < n; ++i) {
             if (grid[i][c] == 'R') { ++atk; break; }
         }
@@ -23,47 +38,21 @@ void solve() {
     };
 
     auto valid_all = [&]() {
-        for (const auto& p : rooks) {
-            if (attacks_count(p.first, p.second) > 1) return false;
+        for (auto [r, c] : rooks) {
+            if (attacks_count(r, c) > 1) return false;
         }
         return true;
     };
 
-    auto try_pair = [&](int r1, int c1, int r2, int c2) {
-        if (r2 >= n || c2 >= m) return;
-        if (grid[r1][c1] == 'R' || grid[r2][c2] == 'R') return;
-
-        grid[r1][c1] = 'R';
-        grid[r2][c2] = 'R';
-        rooks.push_back({r1, c1});
-        rooks.push_back({r2, c2});
-
-        if (!valid_all()) {
-            rooks.pop_back();
-            rooks.pop_back();
-            grid[r1][c1] = '.';
-            grid[r2][c2] = '.';
-        }
-    };
-
-    // Place horizontal and vertical pairs cleanly
+    // Greedily add rooks only when every existing & new rook keeps attacks <= 1
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            try_pair(i, j, i, j + 1);
-            try_pair(i, j, i + 1, j);
-        }
-    }
-
-    // Fallback: add any isolated rook that still keeps attacks <= 1
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            if (grid[i][j] == '.') {
-                grid[i][j] = 'R';
-                rooks.push_back({i, j});
-                if (!valid_all()) {
-                    rooks.pop_back();
-                    grid[i][j] = '.';
-                }
+            if (!can_add(i, j)) continue;
+            grid[i][j] = 'R';
+            rooks.push_back({i, j});
+            if (!valid_all()) {
+                grid[i][j] = '.';
+                rooks.pop_back();
             }
         }
     }
