@@ -1,45 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long chebyshev(pair<long long, long long> p, pair<long long, long long> q) {
-    return max(llabs(p.first - q.first), llabs(p.second - q.second));
-}
-
-void solve() {
-    long long n, m, r, c;
-    cin >> n >> m >> r >> c;
-
-    pair<long long, long long> start = {r, c};
-    vector<pair<long long, long long>> corners = {
-        {1, 1},
-        {1, m},
-        {n, 1},
-        {n, m}
-    };
-
-    sort(corners.begin(), corners.end());
-
-    long long ans = (1LL << 60);
-    do {
-        long long cost = chebyshev(start, corners[0]);
-        for (int i = 0; i + 1 < 4; ++i) {
-            cost += chebyshev(corners[i], corners[i + 1]);
-        }
-        ans = min(ans, cost);
-    } while (next_permutation(corners.begin(), corners.end()));
-
-    cout << ans << '\n';
-}
-
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+	// your code goes here
 
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-
-    return 0;
 }
