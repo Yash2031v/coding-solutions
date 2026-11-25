@@ -61,13 +61,21 @@ The pawn first moves two rows, from row $2$ to row $4$, and then one row at a ti
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-25T15:06:16.455Z  
+**Submitted:** 2026-11-25T15:09:19.234Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
-
+int chess(int r){
+    if(r==2){
+	    return 5;
+	}
+	return 8-r;
+}
 int main() {
+	int R;
+	cin>>R;
+	cout<<chess(R)<<endl;
 	
 
 }
