@@ -60,36 +60,29 @@ YES
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-25T15:20:02.670Z  
+**Submitted:** 2026-11-25T15:21:37.374Z  
 
 ```c_cpp
+
 #include <bits/stdc++.h>
 using namespace std;
-int step(int n){
-    if(n<0){
-        return 0;
-    }
-    if(n==0){
-        return 1;
-    }
-    return step(n-2) + step(n-1);
-}
+
 int main() {
-	int T;
-	cin>>T;
-	while(T--){
-	    int N,K;
-	    cin>>N;
-	    cin>>K;
-	    
-	    if (step(N) > K && K <= N) {
+    int T;
+    cin >> T;
+
+    while(T--) {
+        int N, K;
+        cin >> N >> K;
+
+        if(2*K >= N && K <= N) {
             cout << "YES\n";
-        } 
+        }
         else {
             cout << "NO\n";
         }
-	}
-
+    }
+    return 0;
 }
 
 ```
