@@ -42,9 +42,9 @@ Output: []
 ## Solution
 
 **Language:** C++  
-**Runtime:** 2 ms (beats 41.06%)  
-**Memory:** 17.1 MB (beats 58.22%)  
-**Submitted:** 2026-11-26T09:39:01.267Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 16.9 MB (beats 78.56%)  
+**Submitted:** 2026-11-26T09:39:49.612Z  
 
 ```cpp
 /**
@@ -74,10 +74,8 @@ public:
                 if(node->left != NULL) q.push(node->left);
                 if(node->right != NULL) q.push(node->right);
                 level.push_back(node->val);
-
             }
             ans.push_back(level);
-
         }
         return ans;
     }
