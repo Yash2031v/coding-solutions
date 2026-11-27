@@ -16,6 +16,8 @@ Given `n`, calculate `F(n)`.
 
  
 
+Original
+C++
  **Example 1:** 
 
 ```
@@ -52,20 +54,16 @@ Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 ## Solution
 
 **Language:** C++  
-**Runtime:** 15 ms (beats 22.20%)  
-**Memory:** 7.8 MB (beats 65.54%)  
-**Submitted:** 2026-09-02T15:08:48.145Z  
+**Runtime:** 13 ms (beats 24.45%)  
+**Memory:** 7.7 MB (beats 76.09%)  
+**Submitted:** 2026-11-27T09:37:17.324Z  
 
 ```cpp
 class Solution {
 public:
     int fib(int n) {
-        if(n==0 ){
-            return 0;
-        }
-        if(n==1){
-            return 1;
-        }
+        if(n==0) return 0;
+        if(n==1) return 1;
         return fib(n-1)+fib(n-2);
     }
 };
